@@ -17,3 +17,9 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+
+    # LinkedIn credentials
+    linkedin_api_key: 86lrvb7fm9sv5m
+    linkedin_secret_key: 5Yf9CRpqsWveDQGI
+    linkedin_auth_url: https://www.linkedin.com/oauth/v2/authorization
+    linkedin_calback_url: http://localhost/linkedin/auth/callback

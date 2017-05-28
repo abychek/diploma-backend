@@ -22,4 +22,15 @@ class Manager
             ]
         );
     }
+
+    public function getLoginUrl()
+    {
+        return $this->client->getLoginUrl(
+            [
+                LinkedIn::SCOPE_BASIC_PROFILE,
+                LinkedIn::SCOPE_EMAIL_ADDRESS,
+                LinkedIn::SCOPE_NETWORK
+            ]
+        );
+    }
 }
