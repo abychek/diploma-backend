@@ -5,8 +5,12 @@ namespace StaffBundle\Controller;
 use FOS\RestBundle\Routing\ClassResourceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use FOS\RestBundle\Controller\Annotations\RouteResource;
 
-class EployeeController extends Controller implements ClassResourceInterface
+/**
+ * @RouteResource("Employee")
+ */
+class EmployeeController extends Controller
 {
     /**
      * @Route("/employees")
