@@ -2,14 +2,11 @@
 
 namespace StaffBundle\Controller;
 
-use FOS\RestBundle\Routing\ClassResourceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use FOS\RestBundle\Controller\Annotations\RouteResource;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
-/**
- * @RouteResource("Employee")
- */
+
 class EmployeeController extends Controller
 {
     /**
@@ -17,6 +14,6 @@ class EmployeeController extends Controller
      */
     public function listAction()
     {
-        return $this->render('StaffBundle:Employee:list.html.twig');
+        return new JsonResponse(['message' => 'Employee controller']);
     }
 }

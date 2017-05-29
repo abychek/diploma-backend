@@ -1,7 +1,7 @@
 staff:
     resource: "@StaffBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /api/staff
 
 app:
     resource: '@AppBundle/Controller/'
