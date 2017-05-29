@@ -8,14 +8,14 @@ use AppBundle\Entity\Exception\InvalidDataException;
 interface SerializableInterface
 {
     /**
-     * @return string
+     * @return array
      */
-    public function serialize();
+    public function toArray();
 
     /**
      * @param $json
      * @return SerializableInterface
      * @throws InvalidDataException
      */
-    public static function deserialize($json);
+    public static function toObject($json);
 }

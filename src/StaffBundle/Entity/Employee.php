@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 /**
- * @ORM\Entity(repositoryClass="StaffBundle\Entity\EmployeeRepository")
+ * @ORM\Entity(repositoryClass="StaffBundle\Repository\EmployeeRepository")
  * @ORM\Table(name="employees")
  */
 class Employee implements SerializableInterface
@@ -88,15 +88,15 @@ class Employee implements SerializableInterface
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function serialize()
+    public function toArray()
     {
-        return json_encode([
+        return [
             'id' => $this->getId(),
             'name' => $this->getName(),
             'status' => $this->getStatus()
-        ]);
+        ];
     }
 
 
@@ -105,7 +105,7 @@ class Employee implements SerializableInterface
      * @return SerializableInterface
      * @throws InvalidDataException
      */
-    public static function deserialize($json)
+    public static function toObject($json)
     {
         try {
             return (new self())

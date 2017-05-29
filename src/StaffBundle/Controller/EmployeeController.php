@@ -14,6 +14,12 @@ class EmployeeController extends Controller
      */
     public function listAction()
     {
-        return new JsonResponse(['message' => 'Employee controller']);
+        $result = [];
+        $employees = $this->getDoctrine()->getRepository('StaffBundle:Employee')->findAll();
+        foreach ($employees as $employee) {
+            $result[] = $employee->toArray();
+        }
+
+        return new JsonResponse($result);
     }
 }
