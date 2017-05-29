@@ -2,17 +2,18 @@
 
 namespace StaffBundle\Controller;
 
-use AppBundle\Repository\ResourceRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Controller\RestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 
-class EmployeeController extends Controller
+class EmployeeController extends RestController
 {
     /**
      * @Route("/employees")
+     * @param Request $request
+     * @return JsonResponse
      */
     public function listAction(Request $request)
     {
@@ -24,13 +25,5 @@ class EmployeeController extends Controller
         }
 
         return new JsonResponse($result);
-    }
-
-    private function handlePagination(Request $request)
-    {
-        return [
-            ResourceRepository::OPTION_FROM => $request->get('from') ? : 0,
-            ResourceRepository::OPTION_SIZE => $request->get('size') ? : 100
-        ];
     }
 }
