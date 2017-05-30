@@ -44,7 +44,7 @@ class EmployeeController extends RestController
             return new JsonResponse($employee->toArray());
         }
 
-        return $this->notFoundResponse();
+        return $this->generateInfoResponse(JsonResponse::HTTP_NOT_FOUND);
     }
 
     /**
@@ -65,10 +65,10 @@ class EmployeeController extends RestController
                 ->setStatus(Employee::STATUS_AVAILABLE));
             $em->flush();
 
-            return new JsonResponse(['message' => 'Created'], JsonResponse::HTTP_CREATED);
+            return $this->generateInfoResponse(JsonResponse::HTTP_CREATED);
         }
 
-        return $this->invalidArgumentResponse();
+        return $this->generateInfoResponse(JsonResponse::HTTP_BAD_REQUEST);
     }
 
     /**
@@ -90,10 +90,10 @@ class EmployeeController extends RestController
             $em->persist($employee->setName($name)->setPosition($position)->setStatus($status));
             $em->flush();
 
-            return new JsonResponse(['message' => 'Updated'], JsonResponse::HTTP_OK);
+            return $this->generateInfoResponse(JsonResponse::HTTP_OK);
         }
 
-        return $this->invalidArgumentResponse();
+        return $this->generateInfoResponse(JsonResponse::HTTP_BAD_REQUEST);
     }
 
     /**
@@ -110,9 +110,9 @@ class EmployeeController extends RestController
             $em->remove($employee);
             $em->flush();
 
-            return new JsonResponse(['message' => 'Removed'], JsonResponse::HTTP_NO_CONTENT);
+            return $this->generateInfoResponse(JsonResponse::HTTP_NO_CONTENT);
         }
 
-        return $this->notFoundResponse();
+        return $this->generateInfoResponse(JsonResponse::HTTP_NOT_FOUND);
     }
 }

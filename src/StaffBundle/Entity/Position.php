@@ -9,16 +9,15 @@
 namespace StaffBundle\Entity;
 
 
+use AppBundle\Entity\AbstractResourceEntity;
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\Exception\InvalidDataException;
-use AppBundle\Entity\ResourceEntityInterface;
 use AppBundle\Entity\SerializableInterface;
 
 /**
  * @ORM\Entity(repositoryClass="StaffBundle\Repository\PositionRepository")
  * @ORM\Table(name="positions")
  */
-class Position implements ResourceEntityInterface
+class Position extends AbstractResourceEntity
 {
     /**
      * @ORM\Column(type="integer")
@@ -101,19 +100,5 @@ class Position implements ResourceEntityInterface
             'name' => $this->getName(),
             'status' => $this->getStatus()
         ];
-    }
-
-    /**
-     * @param $json
-     * @return SerializableInterface
-     * @throws InvalidDataException
-     */
-    public static function toObject($json)
-    {
-        try {
-            return (new self())->setId($json['id'])->setName($json['name'])->setStatus($json['status']);
-        } catch (\Exception $exception) {
-            throw new InvalidDataException($exception->getMessage());
-        }
     }
 }

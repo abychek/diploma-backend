@@ -2,6 +2,7 @@
 
 namespace StaffBundle\Entity;
 
+use AppBundle\Entity\AbstractResourceEntity;
 use AppBundle\Entity\Exception\InvalidDataException;
 use AppBundle\Entity\ResourceEntityInterface;
 use AppBundle\Entity\SerializableInterface;
@@ -14,7 +15,7 @@ use Doctrine\ORM\Mapping\ManyToOne;
  * @ORM\Entity(repositoryClass="StaffBundle\Repository\EmployeeRepository")
  * @ORM\Table(name="employees")
  */
-class Employee implements ResourceEntityInterface
+class Employee extends AbstractResourceEntity
 {
     /**
      * @ORM\Column(type="integer")
@@ -34,11 +35,6 @@ class Employee implements ResourceEntityInterface
      * @JoinColumn(name="position_id", referencedColumnName="id")
      */
     private $position;
-
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
-    private $status;
 
     /**
      * @return mixed
@@ -77,24 +73,6 @@ class Employee implements ResourceEntityInterface
     }
 
     /**
-     * @return mixed
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * @param mixed $status
-     * @return Employee
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-        return $this;
-    }
-
-    /**
      * @return Position
      */
     public function getPosition()
@@ -124,24 +102,5 @@ class Employee implements ResourceEntityInterface
             'position' => $this->getPosition()->getName(),
             'status' => $this->getStatus()
         ];
-    }
-
-
-    /**
-     * @param $json
-     * @return SerializableInterface
-     * @throws InvalidDataException
-     */
-    public static function toObject($json)
-    {
-        try {
-            return (new self())
-                ->setId($json['id'])
-                ->setName($json['name'])
-                ->setPosition($json['position'])
-                ->setStatus($json['status']);
-        } catch (\Exception $exception) {
-            throw new InvalidDataException($exception->getMessage());
-        }
     }
 }
