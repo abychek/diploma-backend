@@ -70,4 +70,29 @@ class EmployeeController extends RestController
 
         return new JsonResponse(['message' => 'Invalid arguments'], JsonResponse::HTTP_BAD_REQUEST);
     }
+
+    /**
+     * @Route("/employees/{id}")
+     * @Method({"PUT"})
+     * @param Request $request
+     * @param $id
+     * @return JsonResponse
+     */
+    public function updateAction(Request $request, $id)
+    {
+        $employee = $this->getDoctrine()->getRepository('StaffBundle:Employee')->find($id);
+
+        $name = $request->get('name', $employee->getName());
+        $position = $this->getDoctrine()->getRepository('StaffBundle:Position')->find($request->get('position', $employee->getPosition()));
+        $status = $request->get('status', $employee->getStatus());
+        if ($name || $position || $status) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($employee->setName($name)->setPosition($position)->setStatus($status));
+            $em->flush();
+
+            return new JsonResponse(['message' => 'Updated'], JsonResponse::HTTP_CREATED);
+        }
+
+        return new JsonResponse(['message' => 'Invalid arguments'], JsonResponse::HTTP_BAD_REQUEST);
+    }
 }
