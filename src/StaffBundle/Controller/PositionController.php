@@ -94,6 +94,14 @@ class PositionController extends RestController
      */
     public function deleteAction(Request $request, $id)
     {
-        // TODO: Implement deleteAction() method.
+        if ($position = $this->getDoctrine()->getRepository('StaffBundle:Position')->find($id)) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($position);
+            $em->flush();
+
+            return $this->generateInfoResponse(JsonResponse::HTTP_NO_CONTENT);
+        }
+
+        return $this->generateInfoResponse(JsonResponse::HTTP_NOT_FOUND);
     }
 }
