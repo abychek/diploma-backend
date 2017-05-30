@@ -47,12 +47,27 @@ class EmployeeController extends RestController
         return new JsonResponse(['message' => 'Employee not found.'], JsonResponse::HTTP_NOT_FOUND);
     }
 
+    /**
+     * @Route("/employees")
+     * @Method({"POST"})
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function createAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $em->persist((new Employee())->setName($request->get('name'))->setStatus(Employee::STATUS_AVAILABLE));
-        $em->flush();
+        $name = $request->get('name');
+        $position = $this->getDoctrine()->getRepository('StaffBundle:Position')->find($request->get('position'));
+        if ($name && $position) {
+            $em->persist((new Employee())
+                ->setName($name)
+                ->setPosition($position)
+                ->setStatus(Employee::STATUS_AVAILABLE));
+            $em->flush();
 
-        return new JsonResponse(['message' => 'Created'], JsonResponse::HTTP_CREATED);
+            return new JsonResponse(['message' => 'Created'], JsonResponse::HTTP_CREATED);
+        }
+
+        return new JsonResponse(['message' => 'Invalid arguments'], JsonResponse::HTTP_BAD_REQUEST);
     }
 }
