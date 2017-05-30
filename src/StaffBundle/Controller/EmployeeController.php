@@ -44,7 +44,7 @@ class EmployeeController extends RestController
             return new JsonResponse($employee->toArray());
         }
 
-        return new JsonResponse(['message' => 'Employee not found.'], JsonResponse::HTTP_NOT_FOUND);
+        return $this->notFoundResponse();
     }
 
     /**
@@ -68,7 +68,7 @@ class EmployeeController extends RestController
             return new JsonResponse(['message' => 'Created'], JsonResponse::HTTP_CREATED);
         }
 
-        return new JsonResponse(['message' => 'Invalid arguments'], JsonResponse::HTTP_BAD_REQUEST);
+        return $this->invalidArgumentResponse();
     }
 
     /**
@@ -93,7 +93,7 @@ class EmployeeController extends RestController
             return new JsonResponse(['message' => 'Updated'], JsonResponse::HTTP_OK);
         }
 
-        return new JsonResponse(['message' => 'Invalid arguments'], JsonResponse::HTTP_BAD_REQUEST);
+        return $this->invalidArgumentResponse();
     }
 
     /**
@@ -113,6 +113,6 @@ class EmployeeController extends RestController
             return new JsonResponse(['message' => 'Removed'], JsonResponse::HTTP_NO_CONTENT);
         }
 
-        return new JsonResponse(['message' => 'Employee not found'], JsonResponse::HTTP_NOT_FOUND);
+        return $this->notFoundResponse();
     }
 }
