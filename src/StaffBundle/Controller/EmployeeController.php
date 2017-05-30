@@ -96,6 +96,13 @@ class EmployeeController extends RestController
         return new JsonResponse(['message' => 'Invalid arguments'], JsonResponse::HTTP_BAD_REQUEST);
     }
 
+    /**
+     * @Route("/employees/{id}")
+     * @Method({"DELETE"})
+     * @param Request $request
+     * @param $id
+     * @return JsonResponse
+     */
     public function deleteAction(Request $request, $id)
     {
         if ($employee = $this->getDoctrine()->getRepository('StaffBundle:Employee')->find($id)) {
