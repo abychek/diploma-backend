@@ -1,20 +1,24 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: alexey
+ * Date: 30.05.17
+ * Time: 10:29
+ */
 
 namespace StaffBundle\Entity;
 
+
+use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Exception\InvalidDataException;
 use AppBundle\Entity\ResourceEntityInterface;
 use AppBundle\Entity\SerializableInterface;
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\JoinColumn;
-use Doctrine\ORM\Mapping\ManyToOne;
-
 
 /**
  * @ORM\Entity(repositoryClass="StaffBundle\Repository\EmployeeRepository")
- * @ORM\Table(name="employees")
+ * @ORM\Table(name="positions")
  */
-class Employee implements ResourceEntityInterface
+class Position implements ResourceEntityInterface
 {
     /**
      * @ORM\Column(type="integer")
@@ -27,13 +31,6 @@ class Employee implements ResourceEntityInterface
      * @ORM\Column(type="string", length=100)
      */
     private $name;
-
-    /**
-     * @var Position
-     * @ManyToOne(targetEntity="StaffBundle\Entity\Position")
-     * @JoinColumn(name="position_id", referencedColumnName="id")
-     */
-    private $position;
 
     /**
      * @ORM\Column(type="string", length=20)
@@ -50,7 +47,7 @@ class Employee implements ResourceEntityInterface
 
     /**
      * @param mixed $id
-     * @return Employee
+     * @return Position
      */
     public function setId($id)
     {
@@ -68,7 +65,7 @@ class Employee implements ResourceEntityInterface
 
     /**
      * @param mixed $name
-     * @return Employee
+     * @return Position
      */
     public function setName($name)
     {
@@ -86,32 +83,13 @@ class Employee implements ResourceEntityInterface
 
     /**
      * @param mixed $status
-     * @return Employee
+     * @return Position
      */
     public function setStatus($status)
     {
         $this->status = $status;
         return $this;
     }
-
-    /**
-     * @return Position
-     */
-    public function getPosition()
-    {
-        return $this->position;
-    }
-
-    /**
-     * @param Position $position
-     * @return Employee
-     */
-    public function setPosition($position)
-    {
-        $this->position = $position;
-        return $this;
-    }
-
 
     /**
      * @return array
@@ -121,11 +99,9 @@ class Employee implements ResourceEntityInterface
         return [
             'id' => $this->getId(),
             'name' => $this->getName(),
-            'position' => $this->getPosition()->getName(),
             'status' => $this->getStatus()
         ];
     }
-
 
     /**
      * @param $json
@@ -135,11 +111,7 @@ class Employee implements ResourceEntityInterface
     public static function toObject($json)
     {
         try {
-            return (new self())
-                ->setId($json['id'])
-                ->setName($json['name'])
-                ->setPosition($json['position'])
-                ->setStatus($json['status']);
+            return (new self())->setId($json['id'])->setName($json['name'])->setStatus($json['status']);
         } catch (\Exception $exception) {
             throw new InvalidDataException($exception->getMessage());
         }

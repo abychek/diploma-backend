@@ -3,8 +3,9 @@
 namespace StaffBundle\Controller;
 
 use AppBundle\Controller\RestController;
-use FOS\RestBundle\Controller\Annotations as Rest;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use StaffBundle\Entity\Employee;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -14,6 +15,7 @@ class EmployeeController extends RestController
 {
     /**
      * @Route("/employees")
+     * @Method({"GET"})
      * @param Request $request
      * @return JsonResponse
      */
@@ -31,6 +33,7 @@ class EmployeeController extends RestController
 
     /**
      * @Route("/employees/{id}")
+     * @Method({"GET"})
      * @param Request $request
      * @param $id
      * @return JsonResponse
@@ -41,6 +44,15 @@ class EmployeeController extends RestController
             return new JsonResponse($employee->toArray());
         }
 
-        throw new NotFoundHttpException('Employee not found.');
+        return new JsonResponse(['message' => 'Employee not found.'], JsonResponse::HTTP_NOT_FOUND);
+    }
+
+    public function createAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->persist((new Employee())->setName($request->get('name'))->setStatus(Employee::STATUS_AVAILABLE));
+        $em->flush();
+
+        return new JsonResponse(['message' => 'Created'], JsonResponse::HTTP_CREATED);
     }
 }
