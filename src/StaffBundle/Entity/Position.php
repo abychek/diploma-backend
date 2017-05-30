@@ -15,7 +15,7 @@ use AppBundle\Entity\ResourceEntityInterface;
 use AppBundle\Entity\SerializableInterface;
 
 /**
- * @ORM\Entity(repositoryClass="StaffBundle\Repository\EmployeeRepository")
+ * @ORM\Entity(repositoryClass="StaffBundle\Repository\PositionRepository")
  * @ORM\Table(name="positions")
  */
 class Position implements ResourceEntityInterface
