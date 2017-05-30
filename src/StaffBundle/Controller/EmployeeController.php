@@ -90,9 +90,22 @@ class EmployeeController extends RestController
             $em->persist($employee->setName($name)->setPosition($position)->setStatus($status));
             $em->flush();
 
-            return new JsonResponse(['message' => 'Updated'], JsonResponse::HTTP_CREATED);
+            return new JsonResponse(['message' => 'Updated'], JsonResponse::HTTP_OK);
         }
 
         return new JsonResponse(['message' => 'Invalid arguments'], JsonResponse::HTTP_BAD_REQUEST);
+    }
+
+    public function deleteAction(Request $request, $id)
+    {
+        if ($employee = $this->getDoctrine()->getRepository('StaffBundle:Employee')->find($id)) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($employee);
+            $em->flush();
+
+            return new JsonResponse(['message' => 'Removed'], JsonResponse::HTTP_NO_CONTENT);
+        }
+
+        return new JsonResponse(['message' => 'Employee not found'], JsonResponse::HTTP_NOT_FOUND);
     }
 }
