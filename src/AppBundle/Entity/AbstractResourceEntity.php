@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 abstract class AbstractResourceEntity
 {
     const STATUS_AVAILABLE = 'available';

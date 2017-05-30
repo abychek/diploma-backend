@@ -11,7 +11,6 @@ namespace StaffBundle\Entity;
 
 use AppBundle\Entity\AbstractResourceEntity;
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\SerializableInterface;
 
 /**
  * @ORM\Entity(repositoryClass="StaffBundle\Repository\PositionRepository")
@@ -30,11 +29,6 @@ class Position extends AbstractResourceEntity
      * @ORM\Column(type="string", length=100)
      */
     private $name;
-
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
-    private $status;
 
     /**
      * @return mixed
@@ -69,24 +63,6 @@ class Position extends AbstractResourceEntity
     public function setName($name)
     {
         $this->name = $name;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * @param mixed $status
-     * @return Position
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
         return $this;
     }
 
