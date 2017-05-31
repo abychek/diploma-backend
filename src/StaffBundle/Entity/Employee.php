@@ -8,7 +8,10 @@ use AppBundle\Entity\ResourceEntityInterface;
 use AppBundle\Entity\SerializableInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
+use ProjectsBundle\Entity\Member;
 
 
 /**
@@ -17,13 +20,6 @@ use Doctrine\ORM\Mapping\ManyToOne;
  */
 class Employee extends AbstractResourceEntity
 {
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
     /**
      * @ORM\Column(type="string", length=100)
      */
@@ -37,22 +33,11 @@ class Employee extends AbstractResourceEntity
     private $position;
 
     /**
-     * @return mixed
+     * @var Member[]
+     * @ManyToOne(targetEntity="ProjectsBundle\Entity\Member", inversedBy="employee")
+     * @JoinColumn(name="member_id", referencedColumnName="id")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     * @return Employee
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
-    }
+    private $memberships;
 
     /**
      * @return mixed
@@ -90,6 +75,23 @@ class Employee extends AbstractResourceEntity
         return $this;
     }
 
+    /**
+     * @return Member[]
+     */
+    public function getMemberships()
+    {
+        return $this->memberships;
+    }
+
+    /**
+     * @param Member[] $memberships
+     * @return Employee
+     */
+    public function setMemberships($memberships)
+    {
+        $this->memberships = $memberships;
+        return $this;
+    }
 
     /**
      * @return array
