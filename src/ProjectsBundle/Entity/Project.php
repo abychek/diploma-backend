@@ -107,6 +107,42 @@ class Project extends AbstractResourceEntity
     }
 
     /**
+     * @return mixed
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @param mixed $startDate
+     * @return Project
+     */
+    public function setStartDate($startDate)
+    {
+        $this->startDate = $startDate;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFinishDate()
+    {
+        return $this->finishDate;
+    }
+
+    /**
+     * @param mixed $finishDate
+     * @return Project
+     */
+    public function setFinishDate($finishDate)
+    {
+        $this->finishDate = $finishDate;
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function toArray()
