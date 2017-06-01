@@ -10,11 +10,15 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-
+/**
+ * Class EmployeeController
+ * @package StaffBundle\Controller
+ * @Route("/employees")
+ */
 class EmployeeController extends RestController
 {
     /**
-     * @Route("/employees")
+     * @Route("/")
      * @Method({"GET"})
      * @param Request $request
      * @return JsonResponse
@@ -32,7 +36,7 @@ class EmployeeController extends RestController
     }
 
     /**
-     * @Route("/employees/{id}")
+     * @Route("/{id}/")
      * @Method({"GET"})
      * @param Request $request
      * @param $id
@@ -48,7 +52,7 @@ class EmployeeController extends RestController
     }
 
     /**
-     * @Route("/employees")
+     * @Route("/")
      * @Method({"POST"})
      * @param Request $request
      * @return JsonResponse
@@ -72,7 +76,7 @@ class EmployeeController extends RestController
     }
 
     /**
-     * @Route("/employees/{id}")
+     * @Route("/{id}/")
      * @Method({"PUT"})
      * @param Request $request
      * @param $id
@@ -97,7 +101,7 @@ class EmployeeController extends RestController
     }
 
     /**
-     * @Route("/employees/{id}")
+     * @Route("/{id}/")
      * @Method({"DELETE"})
      * @param Request $request
      * @param $id
