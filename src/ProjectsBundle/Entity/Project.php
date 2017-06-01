@@ -22,7 +22,7 @@ class Project extends AbstractResourceEntity
 
     /**
      * @var string
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text")
      */
     private $description;
 
@@ -31,6 +31,18 @@ class Project extends AbstractResourceEntity
      * @OneToMany(targetEntity="ProjectsBundle\Entity\Member", mappedBy="project")
      */
     private $members;
+
+    /**
+     * @var
+     * @ORM\Column(type="datetime")
+     */
+    private $startDate;
+
+    /**
+     * @var
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $finishDate;
 
     /**
      * Project constructor.
