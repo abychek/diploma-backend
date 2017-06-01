@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @package ProjectsBundle\Controller
  * @Route("/projects")
  */
-class ProjectsController extends RestController
+class ProjectController extends RestController
 {
     /**
      * @Route("/")
@@ -100,6 +100,8 @@ class ProjectsController extends RestController
     }
 
     /**
+     * @Route("/{id}/")
+     * @Method({"DELETE"})
      * @param Request $request
      * @param $id
      * @return JsonResponse

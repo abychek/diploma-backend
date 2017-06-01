@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @package ProjectsBundle\Controller
  * @Route("/projects/{projectId}/members")
  */
-class MembersController extends RestController
+class MemberController extends RestController
 {
 
     /**
