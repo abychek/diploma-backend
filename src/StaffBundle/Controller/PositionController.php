@@ -10,10 +10,15 @@ use StaffBundle\Entity\Position;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class PositionController
+ * @package StaffBundle\Controller
+ * @Route("/positions")
+ */
 class PositionController extends RestController
 {
     /**
-     * @Route("/positions")
+     * @Route("/")
      * @Method({"GET"})
      * @param Request $request
      * @return JsonResponse
@@ -31,7 +36,7 @@ class PositionController extends RestController
     }
 
     /**
-     * @Route("/positions/{id}")
+     * @Route("/{id}/")
      * @Method({"GET"})
      * @param Request $request
      * @param $id
@@ -47,6 +52,8 @@ class PositionController extends RestController
     }
 
     /**
+     * @Route("/")
+     * @Method({"POST"})
      * @param Request $request
      * @return JsonResponse
      */
@@ -66,6 +73,8 @@ class PositionController extends RestController
     }
 
     /**
+     * @Route("/{$id}")
+     * @Method({"PUT"})
      * @param Request $request
      * @param $id
      * @return JsonResponse
@@ -88,6 +97,8 @@ class PositionController extends RestController
     }
 
     /**
+     * @Route("/{$id}")
+     * @Method({"DELETE"})
      * @param Request $request
      * @param $id
      * @return JsonResponse
