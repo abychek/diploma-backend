@@ -3,6 +3,7 @@
 namespace ProjectsBundle\Controller;
 
 use AppBundle\Controller\RestController;
+use ProjectsBundle\Entity\Project;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -34,32 +35,68 @@ class ProjectsController extends RestController
     }
 
     /**
+     * @Route("/{id}/")
+     * @Method({"GET"})
      * @param Request $request
      * @param $id
      * @return JsonResponse
      */
     public function getAction(Request $request, $id)
     {
-        // TODO: Implement getAction() method.
+        if ($project = $this->getDoctrine()->getRepository('ProjectsBundle:Project')->find($id)) {
+            return new JsonResponse($project->toArray());
+        }
+
+        return $this->generateInfoResponse(JsonResponse::HTTP_NOT_FOUND);
     }
 
     /**
+     * @Route("/")
+     * @Method({"POST"})
      * @param Request $request
      * @return JsonResponse
      */
     public function createAction(Request $request)
     {
-        // TODO: Implement createAction() method.
+        $em = $this->getDoctrine()->getManager();
+        $title = $request->get('title');
+        $description = $request->get('description');
+        if ($title && $description) {
+            $em->persist((new Project())
+                ->setTitle($title)
+                ->setDescription($description)
+                ->setStatus(Project::STATUS_AVAILABLE));
+            $em->flush();
+
+            return $this->generateInfoResponse(JsonResponse::HTTP_CREATED);
+        }
+
+        return $this->generateInfoResponse(JsonResponse::HTTP_BAD_REQUEST);
     }
 
     /**
+     * @Route("/{id}/")
+     * @Method({"PUT"})
      * @param Request $request
      * @param $id
      * @return JsonResponse
      */
     public function updateAction(Request $request, $id)
     {
-        // TODO: Implement updateAction() method.
+        $project = $this->getDoctrine()->getRepository('ProjectsBundle:Project')->find($id);
+
+        $title = $request->get('title', $project->getTitle());
+        $description = $request->get('description', $project->getDescription());
+        $status = $request->get('status', $project->getStatus());
+        if ($title || $description || $status) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($project->setName($title)->setPosition($description)->setStatus($status));
+            $em->flush();
+
+            return $this->generateInfoResponse(JsonResponse::HTTP_OK);
+        }
+
+        return $this->generateInfoResponse(JsonResponse::HTTP_BAD_REQUEST);
     }
 
     /**
@@ -69,6 +106,14 @@ class ProjectsController extends RestController
      */
     public function deleteAction(Request $request, $id)
     {
-        // TODO: Implement deleteAction() method.
+        if ($employee = $this->getDoctrine()->getRepository('ProjectsBundle:Project')->find($id)) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($employee);
+            $em->flush();
+
+            return $this->generateInfoResponse(JsonResponse::HTTP_NO_CONTENT);
+        }
+
+        return $this->generateInfoResponse(JsonResponse::HTTP_NOT_FOUND);
     }
 }
