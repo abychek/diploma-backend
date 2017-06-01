@@ -106,9 +106,9 @@ class ProjectsController extends RestController
      */
     public function deleteAction(Request $request, $id)
     {
-        if ($employee = $this->getDoctrine()->getRepository('ProjectsBundle:Project')->find($id)) {
+        if ($project = $this->getDoctrine()->getRepository('ProjectsBundle:Project')->find($id)) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($employee);
+            $em->remove($project);
             $em->flush();
 
             return $this->generateInfoResponse(JsonResponse::HTTP_NO_CONTENT);

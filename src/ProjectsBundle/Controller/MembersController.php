@@ -89,13 +89,32 @@ class MembersController extends RestController
     }
 
     /**
+     * @Route("/{id}/")
+     * @Method({"PUT"})
      * @param Request $request
      * @param $id
      * @return JsonResponse
      */
     public function updateAction(Request $request, $id)
     {
-        // TODO: Implement updateAction() method.
+        if ($request->get('projectId') && $this->getProjectById($request->get('projectId'))) {
+            if (
+                $request->get('roleId') &&
+                ($role = $this->getDoctrine()->getRepository('ProjectsBundle:ProjectRole')->find($request->get('roleId')))
+            ) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist((new Member())
+                    ->setRole($role)
+                    ->setStatus(Member::STATUS_AVAILABLE));
+                $em->flush();
+
+                return $this->generateInfoResponse(JsonResponse::HTTP_CREATED);
+            }
+
+            return $this->generateInfoResponse(JsonResponse::HTTP_BAD_REQUEST);
+        }
+
+        return $this->generateInfoResponse(JsonResponse::HTTP_NOT_FOUND);
     }
 
     /**
@@ -105,7 +124,15 @@ class MembersController extends RestController
      */
     public function deleteAction(Request $request, $id)
     {
-        // TODO: Implement deleteAction() method.
+        if ($member = $this->getDoctrine()->getRepository('ProjectsBundle:Member')->find($id)) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($member);
+            $em->flush();
+
+            return $this->generateInfoResponse(JsonResponse::HTTP_NO_CONTENT);
+        }
+
+        return $this->generateInfoResponse(JsonResponse::HTTP_NOT_FOUND);
     }
 
     private function getProjectById($id)
