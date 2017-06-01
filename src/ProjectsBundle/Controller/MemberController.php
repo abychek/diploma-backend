@@ -49,7 +49,11 @@ class MemberController extends RestController
      */
     public function getAction(Request $request, $id)
     {
-        if ($member = $this->getDoctrine()->getRepository('ProjectsBundle:Member')->find($id)) {
+        if (
+            $request->get('projectId') &&
+            $this->getDoctrine()->getRepository('ProjectsBundle:Project')->find($request->get('projectId')) &&
+            $member = $this->getDoctrine()->getRepository('ProjectsBundle:Member')->find($id)
+        ) {
             return new JsonResponse($member->toArray());
         }
 
@@ -97,15 +101,23 @@ class MemberController extends RestController
      */
     public function updateAction(Request $request, $id)
     {
-        if ($request->get('projectId') && $this->getProjectById($request->get('projectId'))) {
-            if (
-                $request->get('roleId') &&
-                ($role = $this->getDoctrine()->getRepository('ProjectsBundle:ProjectRole')->find($request->get('roleId')))
-            ) {
+        if (
+            $request->get('projectId') &&
+            $this->getProjectById($request->get('projectId')) &&
+            $member = $this->getDoctrine()->getRepository('ProjectsBundle:Member')->find($id)
+        ) {
+            $status = $request->get('status');
+            $roleId = $request->get('roleId');
+            $role = $this->getDoctrine()->getRepository('ProjectsBundle:ProjectRole')->find($roleId);
+            if ($status || $role) {
                 $em = $this->getDoctrine()->getManager();
-                $em->persist((new Member())
-                    ->setRole($role)
-                    ->setStatus(Member::STATUS_AVAILABLE));
+                if ($role = $this->getDoctrine()->getRepository('ProjectsBundle:ProjectRole')->find($roleId)) {
+                    $member->setRole($role);
+                };
+                if ($status) {
+                    $member->setStatus($status);
+                }
+                $em->persist($member);
                 $em->flush();
 
                 return $this->generateInfoResponse(JsonResponse::HTTP_CREATED);

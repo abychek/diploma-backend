@@ -81,19 +81,21 @@ class PositionController extends RestController
      */
     public function updateAction(Request $request, $id)
     {
-        $position = $this->getDoctrine()->getRepository('StaffBundle:Position')->find($id);
+        if ($position = $this->getDoctrine()->getRepository('StaffBundle:Position')->find($id)) {
+            $name = $request->get('name', $position->getName());
+            $status = $request->get('status', $position->getStatus());
+            if ($name || $status) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($position->setName($name)->setStatus($status));
+                $em->flush();
 
-        $name = $request->get('name', $position->getName());
-        $status = $request->get('status', $position->getStatus());
-        if ($name || $status) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($position->setName($name)->setStatus($status));
-            $em->flush();
+                return $this->generateInfoResponse(JsonResponse::HTTP_OK);
+            }
 
-            return $this->generateInfoResponse(JsonResponse::HTTP_OK);
+            return $this->generateInfoResponse(JsonResponse::HTTP_BAD_REQUEST);
         }
 
-        return $this->generateInfoResponse(JsonResponse::HTTP_BAD_REQUEST);
+        return $this->generateInfoResponse(JsonResponse::HTTP_NOT_FOUND);
     }
 
     /**

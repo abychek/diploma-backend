@@ -2,20 +2,22 @@
 
 namespace ProjectsBundle\Controller;
 
+
 use AppBundle\Controller\RestController;
-use ProjectsBundle\Entity\Project;
+use ProjectsBundle\Entity\ProjectRole;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class ProjectsController
+ * Class ProjectRolesController
  * @package ProjectsBundle\Controller
- * @Route("/projects")
+ * @Route("/project-roles")
  */
-class ProjectController extends RestController
+class ProjectRolesController extends RestController
 {
+
     /**
      * @Route("/")
      * @Method({"GET"})
@@ -26,9 +28,9 @@ class ProjectController extends RestController
     {
         $result = [];
         $options = $this->handlePagination($request);
-        $projects = $this->getDoctrine()->getRepository('ProjectsBundle:Project')->getSortedByTitle($options);
-        foreach ($projects as $project) {
-            $result[] = $project->toArray();
+        $roles = $this->getDoctrine()->getRepository('ProjectsBundle:ProjectRole')->getSortedByRoleName($options);
+        foreach ($roles as $role) {
+            $result[] = $role->toArray();
         }
 
         return new JsonResponse($result);
@@ -43,8 +45,8 @@ class ProjectController extends RestController
      */
     public function getAction(Request $request, $id)
     {
-        if ($project = $this->getDoctrine()->getRepository('ProjectsBundle:Project')->find($id)) {
-            return new JsonResponse($project->toArray());
+        if ($role = $this->getDoctrine()->getRepository('ProjectsBundle:ProjectRole')->find($id)) {
+            return new JsonResponse($role->toArray());
         }
 
         return $this->generateInfoResponse(JsonResponse::HTTP_NOT_FOUND);
@@ -58,14 +60,12 @@ class ProjectController extends RestController
      */
     public function createAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $title = $request->get('title');
-        $description = $request->get('description');
-        if ($title && $description) {
-            $em->persist((new Project())
-                ->setTitle($title)
-                ->setDescription($description)
-                ->setStatus(Project::STATUS_AVAILABLE));
+        $name = $request->get('name');
+        if ($name) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist((new ProjectRole())
+                ->setRoleName($name)
+                ->setStatus(ProjectRole::STATUS_AVAILABLE));
             $em->flush();
 
             return $this->generateInfoResponse(JsonResponse::HTTP_CREATED);
@@ -83,16 +83,16 @@ class ProjectController extends RestController
      */
     public function updateAction(Request $request, $id)
     {
-        if ($project = $this->getDoctrine()->getRepository('ProjectsBundle:Project')->find($id)) {
-            $title = $request->get('title', $project->getTitle());
-            $description = $request->get('description', $project->getDescription());
-            $status = $request->get('status', $project->getStatus());
-            if ($title || $description || $status) {
+        if ($role = $this->getDoctrine()->getRepository('ProjectsBundle:ProjectRole')->find($id)) {
+            $name = $request->get('name');
+            if ($name) {
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($project->setName($title)->setPosition($description)->setStatus($status));
+                $em->persist((new ProjectRole())
+                    ->setRoleName($name)
+                    ->setStatus(ProjectRole::STATUS_AVAILABLE));
                 $em->flush();
 
-                return $this->generateInfoResponse(JsonResponse::HTTP_OK);
+                return $this->generateInfoResponse(JsonResponse::HTTP_CREATED);
             }
 
             return $this->generateInfoResponse(JsonResponse::HTTP_BAD_REQUEST);
@@ -110,9 +110,9 @@ class ProjectController extends RestController
      */
     public function deleteAction(Request $request, $id)
     {
-        if ($project = $this->getDoctrine()->getRepository('ProjectsBundle:Project')->find($id)) {
+        if ($role = $this->getDoctrine()->getRepository('ProjectsBundle:ProjectRole')->find($id)) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($project);
+            $em->remove($role);
             $em->flush();
 
             return $this->generateInfoResponse(JsonResponse::HTTP_NO_CONTENT);

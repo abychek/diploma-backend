@@ -7,5 +7,14 @@ use AppBundle\Repository\AbstractRepository;
 
 class ProjectRolesRepository extends AbstractRepository
 {
+    const FIELD_ROLE_NAME = 'roleName';
 
+    /**
+     * @param array $options
+     * @return \AppBundle\Entity\AbstractResourceEntity[]
+     */
+    public function getSortedByRoleName(array $options)
+    {
+        return $this->getSortedBy(self::FIELD_ROLE_NAME, $options);
+    }
 }

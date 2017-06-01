@@ -51,6 +51,24 @@ class ProjectRole extends AbstractResourceEntity
     }
 
     /**
+     * @return ArrayCollection|Member[]
+     */
+    public function getMemberships()
+    {
+        return $this->memberships;
+    }
+
+    /**
+     * @param ArrayCollection|Member[] $memberships
+     * @return ProjectRole
+     */
+    public function setMemberships($memberships)
+    {
+        $this->memberships = $memberships;
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function toArray()

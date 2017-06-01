@@ -84,20 +84,22 @@ class EmployeeController extends RestController
      */
     public function updateAction(Request $request, $id)
     {
-        $employee = $this->getDoctrine()->getRepository('StaffBundle:Employee')->find($id);
+        if ($employee = $this->getDoctrine()->getRepository('StaffBundle:Employee')->find($id)) {
+            $name = $request->get('name', $employee->getName());
+            $position = $this->getDoctrine()->getRepository('StaffBundle:Position')->find($request->get('position', $employee->getPosition()));
+            $status = $request->get('status', $employee->getStatus());
+            if ($name || $position || $status) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($employee->setName($name)->setPosition($position)->setStatus($status));
+                $em->flush();
 
-        $name = $request->get('name', $employee->getName());
-        $position = $this->getDoctrine()->getRepository('StaffBundle:Position')->find($request->get('position', $employee->getPosition()));
-        $status = $request->get('status', $employee->getStatus());
-        if ($name || $position || $status) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($employee->setName($name)->setPosition($position)->setStatus($status));
-            $em->flush();
+                return $this->generateInfoResponse(JsonResponse::HTTP_OK);
+            }
 
-            return $this->generateInfoResponse(JsonResponse::HTTP_OK);
+            return $this->generateInfoResponse(JsonResponse::HTTP_BAD_REQUEST);
         }
 
-        return $this->generateInfoResponse(JsonResponse::HTTP_BAD_REQUEST);
+        return $this->generateInfoResponse(JsonResponse::HTTP_NOT_FOUND);
     }
 
     /**

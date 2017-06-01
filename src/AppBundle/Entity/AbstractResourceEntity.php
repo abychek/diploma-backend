@@ -49,7 +49,7 @@ abstract class AbstractResourceEntity
 
     /**
      * @param mixed $status
-     * @return self
+     * @return $this
      */
     public function setStatus($status)
     {
