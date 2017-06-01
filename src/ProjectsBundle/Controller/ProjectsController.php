@@ -8,10 +8,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class ProjectsController
+ * @package ProjectsBundle\Controller
+ * @Route("/projects")
+ */
 class ProjectsController extends RestController
 {
     /**
-     * @Route('/projects')
+     * @Route("/")
      * @Method({"GET"})
      * @param Request $request
      * @return JsonResponse

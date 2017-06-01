@@ -5,15 +5,12 @@ namespace ProjectsBundle\Entity;
 
 use AppBundle\Entity\AbstractResourceEntity;
 use Doctrine\ORM\Mapping\JoinColumn;
-use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use StaffBundle\Entity\Employee;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Member
- * @package ProjectsBundle\Entity
  * @ORM\Entity(repositoryClass="ProjectsBundle\Repository\MemberRepository")
  * @ORM\Table(name="Members")
  */

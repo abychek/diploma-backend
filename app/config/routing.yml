@@ -1,12 +1,12 @@
 projects:
     resource: "@ProjectsBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /api
 
 staff:
     resource: "@StaffBundle/Controller/"
     type:     annotation
-    prefix:   /api/staff
+    prefix:   /api
 
 app:
     resource: '@AppBundle/Controller/'

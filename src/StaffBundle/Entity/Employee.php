@@ -3,13 +3,8 @@
 namespace StaffBundle\Entity;
 
 use AppBundle\Entity\AbstractResourceEntity;
-use AppBundle\Entity\Exception\InvalidDataException;
-use AppBundle\Entity\ResourceEntityInterface;
-use AppBundle\Entity\SerializableInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
-use Doctrine\ORM\Mapping\JoinTable;
-use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use ProjectsBundle\Entity\Member;
 
