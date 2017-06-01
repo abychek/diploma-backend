@@ -3,9 +3,11 @@
 namespace StaffBundle\Entity;
 
 use AppBundle\Entity\AbstractResourceEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\OneToMany;
 use ProjectsBundle\Entity\Member;
 
 
@@ -29,10 +31,18 @@ class Employee extends AbstractResourceEntity
 
     /**
      * @var Member[]
-     * @ManyToOne(targetEntity="ProjectsBundle\Entity\Member", inversedBy="employee")
-     * @JoinColumn(name="member_id", referencedColumnName="id")
+     * @OneToMany(targetEntity="ProjectsBundle\Entity\Member", mappedBy="employee")
      */
     private $memberships;
+
+    /**
+     * Employee constructor.
+     */
+    public function __construct()
+    {
+        $this->memberships = new ArrayCollection();
+    }
+
 
     /**
      * @return mixed

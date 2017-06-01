@@ -10,7 +10,9 @@ namespace ProjectsBundle\Entity;
 
 
 use AppBundle\Entity\AbstractResourceEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * @ORM\Entity(repositoryClass="ProjectsBundle\Repository\ProjectRolesRepository")
@@ -23,6 +25,12 @@ class ProjectRole extends AbstractResourceEntity
      * @ORM\Column(type="string")
      */
     private $roleName;
+
+    /**
+     * @var ArrayCollection|Member[]
+     * @OneToMany(targetEntity="ProjectsBundle\Entity\Member", mappedBy="project_roles")
+     */
+    private $memberships;
 
     /**
      * @return string

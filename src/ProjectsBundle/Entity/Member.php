@@ -18,13 +18,15 @@ class Member extends AbstractResourceEntity
 {
     /**
      * @var Employee
-     * @OneToMany(targetEntity="StaffBundle\Entity\Employee", mappedBy="memberships")
+     * @ManyToOne(targetEntity="StaffBundle\Entity\Employee", inversedBy="memberships")
+     * @JoinColumn(name="employee_id", referencedColumnName="id")
      */
     private $employee;
 
     /**
      * @var ProjectRole
-     * @OneToMany(targetEntity="ProjectsBundle\Entity\ProjectRole", mappedBy="id")
+     * @ManyToOne(targetEntity="ProjectsBundle\Entity\ProjectRole", inversedBy="memberships")
+     * @JoinColumn(name="role_id", referencedColumnName="id")
      */
     private $role;
 

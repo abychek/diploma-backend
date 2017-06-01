@@ -34,10 +34,13 @@ class EmployeesDataLoader implements FixtureInterface
      */
     private function createEmployee($name, Position $position, $status)
     {
-        return (new Employee())
+        $employee = new Employee();
+        $employee
             ->setName($name)
             ->setPosition($position)
             ->setStatus($status);
+
+        return $employee;
     }
 
     /**
@@ -47,6 +50,9 @@ class EmployeesDataLoader implements FixtureInterface
      */
     private function createPosition($name, $status)
     {
-        return (new Position())->setName($name)->setStatus($status);
+        $position = new Position();
+        $position->setName($name)->setStatus($status);
+
+        return $position;
     }
 }

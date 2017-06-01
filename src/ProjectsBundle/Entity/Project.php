@@ -4,6 +4,7 @@ namespace ProjectsBundle\Entity;
 
 
 use AppBundle\Entity\AbstractResourceEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToMany;
 
@@ -30,6 +31,14 @@ class Project extends AbstractResourceEntity
      * @OneToMany(targetEntity="ProjectsBundle\Entity\Member", mappedBy="project")
      */
     private $members;
+
+    /**
+     * Project constructor.
+     */
+    public function __construct()
+    {
+        $this->members = new ArrayCollection();
+    }
 
     /**
      * @return string
@@ -68,7 +77,7 @@ class Project extends AbstractResourceEntity
     }
 
     /**
-     * @return Member[]
+     * @return ArrayCollection|Member[]
      */
     public function getMembers()
     {
@@ -76,7 +85,7 @@ class Project extends AbstractResourceEntity
     }
 
     /**
-     * @param Member[] $members
+     * @param ArrayCollection|Member[] $members
      * @return Project
      */
     public function setMembers($members)
