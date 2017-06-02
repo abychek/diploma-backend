@@ -1,7 +1,7 @@
 technologies:
     resource: "@TechnologiesBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /api
 
 projects:
     resource: "@ProjectsBundle/Controller/"
