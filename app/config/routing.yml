@@ -1,3 +1,8 @@
+technologies:
+    resource: "@TechnologiesBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 projects:
     resource: "@ProjectsBundle/Controller/"
     type:     annotation
