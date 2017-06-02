@@ -33,13 +33,13 @@ class Project extends AbstractResourceEntity
     private $members;
 
     /**
-     * @var
+     * @var \DateTime
      * @ORM\Column(type="datetime")
      */
     private $startDate;
 
     /**
-     * @var
+     * @var \DateTime
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $finishDate;
@@ -107,11 +107,11 @@ class Project extends AbstractResourceEntity
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getStartDate()
     {
-        return $this->startDate;
+        return $this->startDate->format('d.m.Y');
     }
 
     /**
@@ -125,11 +125,11 @@ class Project extends AbstractResourceEntity
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getFinishDate()
     {
-        return $this->finishDate;
+        return $this->finishDate ? $this->finishDate->format('d.m.Y') : '';
     }
 
     /**
@@ -156,7 +156,9 @@ class Project extends AbstractResourceEntity
             'id' => $this->getId(),
             'title' => $this->getTitle(),
             'description' => $this->getDescription(),
-            'members' => $members
+            'members' => $members,
+            'started_at' => $this->getStartDate(),
+            'finished_at' => $this->getFinishDate()
         ];
     }
 }

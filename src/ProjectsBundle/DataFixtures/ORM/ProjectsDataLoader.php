@@ -76,6 +76,7 @@ class ProjectsDataLoader implements FixtureInterface
         $project
             ->setTitle($title)
             ->setDescription($description)
+            ->setStartDate(new \DateTime())
             ->setStatus(Project::STATUS_AVAILABLE);
 
         return $project;
