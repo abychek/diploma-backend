@@ -61,10 +61,12 @@ class ProjectController extends RestController
         $em = $this->getDoctrine()->getManager();
         $title = $request->get('title');
         $description = $request->get('description');
-        if ($title && $description) {
+        $startDate = new \DateTime($request->get('startDate', 'now'));
+        if ($title && $description && $startDate) {
             $em->persist((new Project())
                 ->setTitle($title)
                 ->setDescription($description)
+                ->setStartDate($startDate)
                 ->setStatus(Project::STATUS_AVAILABLE));
             $em->flush();
 
@@ -86,10 +88,17 @@ class ProjectController extends RestController
         if ($project = $this->getDoctrine()->getRepository('ProjectsBundle:Project')->find($id)) {
             $title = $request->get('title', $project->getTitle());
             $description = $request->get('description', $project->getDescription());
+            $startDate = $request->get('startDate', $project->getStartDate());
+            $finishDate = $request->get('finishDate', $project->getFinishDate());
             $status = $request->get('status', $project->getStatus());
             if ($title || $description || $status) {
                 $em = $this->getDoctrine()->getManager();
-                $em->persist($project->setName($title)->setPosition($description)->setStatus($status));
+                $project->setTitle($title);
+                $project->setDescription($description);
+                $project->setStartDate($startDate);
+                $project->setFinishDate($finishDate);
+                $project->setStatus($status);
+                $em->persist($project);
                 $em->flush();
 
                 return $this->generateInfoResponse(JsonResponse::HTTP_OK);
