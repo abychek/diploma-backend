@@ -3,6 +3,7 @@
 namespace StaffBundle\Controller;
 
 use AppBundle\Controller\RestController;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use StaffBundle\Entity\Employee;
@@ -19,6 +20,38 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class EmployeeController extends RestController
 {
     /**
+     * @ApiDoc(
+     *  section="Employees",
+     *  resource=true,
+     *  description="Return list of employees.",
+     *  filters={
+     *      {"name"="size", "dataType"="integer", "description"="Size of returned data"},
+     *      {"name"="from", "dataType"="integer", "description"="Start position of returned data"},
+     *      {
+     *          "name"="sort",
+     *          "dataType"="string",
+     *          "pattern"="field:(name); strategy:(ASC|DESC)",
+     *          "description"="Sorted field and strategy ({field}:{strategy})"
+     *      },
+     *      {
+     *          "name"="name",
+     *          "dataType"="string",
+     *          "description"="Filtrate employees by Name."
+     *      },
+     *      {
+     *          "name"="projects",
+     *          "dataType"="array",
+     *          "pattern"="{project_id1},{project_id2},{project_id3}, ...",
+     *          "description"="Filtrate employees by Employees."
+     *      },
+     *      {
+     *          "name"="skills",
+     *          "dataType"="array",
+     *          "pattern"="{technology_id1},{technology_id2},{technology_id3}, ...",
+     *          "description"="Filtrate employees by Technologies."
+     *      }
+     *  }
+     * )
      * @Route("/")
      * @Method({"GET"})
      * @param Request $request
@@ -37,6 +70,14 @@ class EmployeeController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="Employees",
+     *  resource=true,
+     *  description="Return concrete employee.",
+     *  parameters={
+     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Employee id"}
+     *  }
+     * )
      * @Route("/{id}/")
      * @Method({"GET"})
      * @param Request $request
@@ -53,6 +94,23 @@ class EmployeeController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="Employees",
+     *  resource=true,
+     *  description="Create new Employee.",
+     *  requirements={
+     *      {
+     *          "name"="name",
+     *          "dataType"="string",
+     *          "description"="Employee name."
+     *      },
+     *      {
+     *          "name"="position",
+     *          "dataType"="integer",
+     *          "description"="Position id."
+     *      }
+     *  }
+     * )
      * @Route("/")
      * @Method({"POST"})
      * @param Request $request
@@ -77,6 +135,33 @@ class EmployeeController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="Employees",
+     *  resource=true,
+     *  description="Update employee.",
+     *  parameters={
+     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Employee id"},
+     *      {
+     *          "name"="name",
+     *          "dataType"="string",
+     *          "required"=false,
+     *          "description"="Employee name."
+     *      },
+     *      {
+     *          "name"="position",
+     *          "dataType"="integer",
+     *          "required"=false,
+     *          "description"="Position id."
+     *      },
+     *      {
+     *          "name"="status",
+     *          "dataType"="string",
+     *          "required"=false,
+     *          "pattern"="(available|unavailable)",
+     *          "description"="Employee status."
+     *      }
+     *  }
+     * )
      * @Route("/{id}/")
      * @Method({"PUT"})
      * @param Request $request
@@ -104,6 +189,14 @@ class EmployeeController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="Employees",
+     *  resource=true,
+     *  description="Remove concrete employee.",
+     *  parameters={
+     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Project id"}
+     *  }
+     * )
      * @Route("/{id}/")
      * @Method({"DELETE"})
      * @param Request $request

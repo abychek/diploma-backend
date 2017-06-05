@@ -134,7 +134,7 @@ class ProjectRolesController extends RestController
      *          "dataType"="string",
      *          "required"=false,
      *          "pattern"="(available|unavailable)",
-     *          "description"="Project status."
+     *          "description"="Project role status."
      *      }
      *  }
      * )

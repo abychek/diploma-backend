@@ -165,7 +165,7 @@ class MemberController extends RestController
      *          "dataType"="string",
      *          "required"="false",
      *          "pattern"="(available|unavailable)",
-     *          "description"="Project status."
+     *          "description"="Member status."
      *      }
      *  }
      * )
