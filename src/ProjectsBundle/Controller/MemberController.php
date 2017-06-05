@@ -4,6 +4,7 @@ namespace ProjectsBundle\Controller;
 
 
 use AppBundle\Controller\RestController;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use ProjectsBundle\Entity\Member;
 use ProjectsBundle\Repository\MemberRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -20,6 +21,29 @@ class MemberController extends RestController
 {
 
     /**
+     * @ApiDoc(
+     *  section="Projects",
+     *  resource=true,
+     *  description="Return list of project members.",
+     *  filters={
+     *      {"name"="size", "dataType"="integer", "description"="Size of returned data"},
+     *      {"name"="from", "dataType"="integer", "description"="Start position of returned data"},
+     *      {
+     *          "name"="sort",
+     *          "dataType"="string",
+     *          "pattern"="field:(name); strategy:(ASC|DESC)",
+     *          "description"="Sorted field and strategy ({field}:{strategy})"
+     *      },
+     *      {
+     *          "name"="name",
+     *          "dataType"="string",
+     *          "description"="Filtrate members by Employee name."
+     *      }
+     *  },
+     *  parameters={
+     *      {"name"="projectId", "dataType"="integer", "required"=true, "description"="Project id."}
+     *  }
+     * )
      * @Route("/")
      * @Method({"GET"})
      * @param Request $request
@@ -42,6 +66,15 @@ class MemberController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="Projects",
+     *  resource=true,
+     *  description="Return concrete project member.",
+     *  parameters={
+     *      {"name"="projectId", "dataType"="integer", "required"=true, "description"="Project id"},
+     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Member id"}
+     *  }
+     * )
      * @Route("/{id}/")
      * @Method({"GET"})
      * @param Request $request
@@ -62,6 +95,26 @@ class MemberController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="Projects",
+     *  resource=true,
+     *  description="Create new project member.",
+     *  requirements={
+     *      {
+     *          "name"="employeeId",
+     *          "dataType"="integer",
+     *          "description"="Employee id."
+     *      },
+     *      {
+     *          "name"="roleId",
+     *          "dataType"="integer",
+     *          "description"="Project role id."
+     *      }
+     *  },
+     *  parameters={
+     *      {"name"="projectId", "dataType"="integer", "required"=true, "description"="Project id"}
+     *  }
+     * )
      * @Route("/")
      * @Method({"POST"})
      * @param Request $request
@@ -94,6 +147,28 @@ class MemberController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="Projects",
+     *  resource=true,
+     *  description="Update project member.",
+     *  parameters={
+     *      {"name"="projectId", "dataType"="integer", "required"="true", "description"="Project id"},
+     *      {"name"="id", "dataType"="integer", "required"="true", "description"="Member id"},
+     *      {
+     *          "name"="roleId",
+     *          "dataType"="integer",
+     *          "required"="false",
+     *          "description"="Project role id."
+     *      },
+     *      {
+     *          "name"="status",
+     *          "dataType"="string",
+     *          "required"="false",
+     *          "pattern"="(available|unavailable)",
+     *          "description"="Project status."
+     *      }
+     *  }
+     * )
      * @Route("/{id}/")
      * @Method({"PUT"})
      * @param Request $request
@@ -131,6 +206,17 @@ class MemberController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="Projects",
+     *  resource=true,
+     *  description="Remove concrete project member.",
+     *  parameters={
+     *      {"name"="projectId", "dataType"="integer", "required"="true", "description"="Project id"},
+     *      {"name"="id", "dataType"="integer", "required"="true", "description"="Member id"}
+     *  },
+     * )
+     * @Route("/{id}/")
+     * @Method({"DELETE"})
      * @param Request $request
      * @param $id
      * @return JsonResponse
@@ -158,7 +244,7 @@ class MemberController extends RestController
      */
     protected function getLikeFiltrationFields()
     {
-        return [MemberRepository::FIELD_EMPLOYEE];
+        return [MemberRepository::FIELD_EMPLOYEE_NAME];
     }
 
     /**

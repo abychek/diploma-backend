@@ -21,7 +21,7 @@ class ProjectController extends RestController
 {
     /**
      * @ApiDoc(
-     *  section="projects",
+     *  section="Projects",
      *  resource=true,
      *  description="Return list of projects.",
      *  filters={
@@ -83,7 +83,7 @@ class ProjectController extends RestController
 
     /**
      * @ApiDoc(
-     *  section="projects",
+     *  section="Projects",
      *  resource=true,
      *  description="Return concrete project.",
      *  parameters={
@@ -107,7 +107,7 @@ class ProjectController extends RestController
 
     /**
      * @ApiDoc(
-     *  section="projects",
+     *  section="Projects",
      *  resource=true,
      *  description="Create new project.",
      *  requirements={
@@ -159,9 +159,9 @@ class ProjectController extends RestController
 
     /**
      * @ApiDoc(
-     *  section="projects",
+     *  section="Projects",
      *  resource=true,
-     *  description="Create new project.",
+     *  description="Update project.",
      *  parameters={
      *      {"name"="id", "dataType"="integer", "required"=true, "description"="Project id"},
      *      {
@@ -234,7 +234,7 @@ class ProjectController extends RestController
 
     /**
      * @ApiDoc(
-     *  section="projects",
+     *  section="Projects",
      *  resource=true,
      *  description="Remove concrete project.",
      *  parameters={

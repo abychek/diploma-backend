@@ -9,7 +9,6 @@ use ProjectsBundle\Entity\Project;
 
 class MemberRepository extends AbstractRepository
 {
-    const FIELD_EMPLOYEE = 'employee';
     const FIELD_EMPLOYEE_NAME = 'name';
 
     /**
@@ -25,7 +24,7 @@ class MemberRepository extends AbstractRepository
             ->where('m.project = :project')
             ->andWhere($builder->expr()->like('e.name', ':employee'))
             ->setParameter(':project', $project)
-            ->setParameter(':employee', $options[self::FIELD_EMPLOYEE]);
+            ->setParameter(':employee', $options[self::FIELD_EMPLOYEE_NAME]);
         ;
         $this->paginationWrapper($builder, $options);
         $this->sortingWrapper($builder, $options, 'e');
