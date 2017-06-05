@@ -134,4 +134,22 @@ class PositionController extends RestController
     {
         return [];
     }
+
+    /**
+     * @return array
+     */
+    protected function getAllowedToSort()
+    {
+        return [
+            PositionRepository::FIELD_NAME
+        ];
+    }
+
+    /**
+     * @return string
+     */
+    protected function getDefaultSort()
+    {
+        return PositionRepository::FIELD_NAME;
+    }
 }

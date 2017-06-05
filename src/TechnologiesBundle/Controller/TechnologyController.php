@@ -134,4 +134,22 @@ class TechnologyController extends RestController
     {
         return [];
     }
+
+    /**
+     * @return array
+     */
+    protected function getAllowedToSort()
+    {
+        return [
+            TechnologyRepository::FIELD_TITLE
+        ];
+    }
+
+    /**
+     * @return string
+     */
+    protected function getDefaultSort()
+    {
+        return TechnologyRepository::FIELD_TITLE;
+    }
 }
