@@ -137,4 +137,22 @@ class ProjectRolesController extends RestController
     {
         return [];
     }
+
+    /**
+     * @return array
+     */
+    protected function getAllowedToSort()
+    {
+        return [
+            ProjectRolesRepository::FIELD_ROLE_NAME
+        ];
+    }
+
+    /**
+     * @return string
+     */
+    protected function getDefaultSort()
+    {
+        return ProjectRolesRepository::FIELD_ROLE_NAME;
+    }
 }

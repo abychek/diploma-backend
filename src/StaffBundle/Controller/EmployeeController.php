@@ -138,4 +138,22 @@ class EmployeeController extends RestController
     {
         return [EmployeeRepository::FIELD_PROJECTS, EmployeeRepository::FIELD_SKILLS];
     }
+
+    /**
+     * @return array
+     */
+    protected function getAllowedToSort()
+    {
+        return [
+            EmployeeRepository::FIELD_NAME
+        ];
+    }
+
+    /**
+     * @return string
+     */
+    protected function getDefaultSort()
+    {
+        return EmployeeRepository::FIELD_NAME;
+    }
 }
