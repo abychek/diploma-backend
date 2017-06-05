@@ -27,7 +27,7 @@ class ProjectRolesController extends RestController
     public function listAction(Request $request)
     {
         $result = [];
-        $options = $this->handlePagination($request);
+        $options = $this->handleOptions($request);
         $roles = $this->getDoctrine()->getRepository('ProjectsBundle:ProjectRole')->getSortedByRoleName($options);
         foreach ($roles as $role) {
             $result[] = $role->toArray();

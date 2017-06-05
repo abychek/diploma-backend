@@ -14,13 +14,72 @@ abstract class RestController extends Controller
      * @param Request $request
      * @return array
      */
-    protected function handlePagination(Request $request)
+    protected function handleOptions(Request $request)
     {
-        return [
-            ResourceRepository::OPTION_FROM => $request->get('from') ? : 0,
-            ResourceRepository::OPTION_SIZE => $request->get('size') ? : 100
-        ];
+        return array_merge([
+            ResourceRepository::OPTION_FROM => $this->getFrom($request),
+            ResourceRepository::OPTION_SIZE => $this->getSize($request)
+        ], $this->getFiltration($request));
     }
+
+    /**
+     * @param Request $request
+     * @return string
+     */
+    private function getFrom(Request $request)
+    {
+        return $this->getOption($request, ResourceRepository::OPTION_FROM, 0);
+    }
+
+    /**
+     * @param Request $request
+     * @return string
+     */
+    private function getSize(Request $request)
+    {
+        return $this->getOption($request, ResourceRepository::OPTION_SIZE, 10);
+    }
+
+    /**
+     * @param Request $request
+     * @param $param
+     * @param $default
+     * @return string
+     */
+    private function getOption(Request $request, $param, $default)
+    {
+        return $request->get($param, $default);
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    private function getFiltration(Request $request)
+    {
+        $query = [];
+        foreach ($this->getLikeFiltrationFields() as $field) {
+            $query[$field] = '%' . $request->get($field, '') . '%';
+        }
+
+        foreach ($this->getInFiltrationFields() as $field) {
+            if ($request->query->has($field)) {
+                $query[$field] = explode(',', $request->get($field));
+            }
+        }
+
+        return $query;
+    }
+
+    /**
+     * @return array
+     */
+    abstract protected function getLikeFiltrationFields();
+
+    /**
+     * @return array
+     */
+    abstract protected function getInFiltrationFields();
 
     /**
      * @param int $code

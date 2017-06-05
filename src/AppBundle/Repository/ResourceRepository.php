@@ -13,4 +13,5 @@ interface ResourceRepository
 {
     const OPTION_FROM = 'from';
     const OPTION_SIZE = 'size';
+    const OPTION_QUERY = 'query';
 }

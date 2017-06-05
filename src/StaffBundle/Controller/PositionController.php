@@ -26,7 +26,7 @@ class PositionController extends RestController
     public function listAction(Request $request)
     {
         $result = [];
-        $options = $this->handlePagination($request);
+        $options = $this->handleOptions($request);
         $positions = $this->getDoctrine()->getRepository('StaffBundle:Position')->getSortedByName($options);
         foreach ($positions as $position) {
             $result[] = $position->toArray();

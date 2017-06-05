@@ -16,6 +16,6 @@ class PositionRepository extends AbstractRepository
      */
     public function getSortedByName(array $options)
     {
-        return $this->getSortedBy(self::FIELD_NAME, $options);
+        return $this->getByOptions(self::FIELD_NAME, $options);
     }
 }

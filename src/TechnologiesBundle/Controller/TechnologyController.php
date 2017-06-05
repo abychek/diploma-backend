@@ -26,7 +26,7 @@ class TechnologyController extends RestController
     public function listAction(Request $request)
     {
         $result = [];
-        $options = $this->handlePagination($request);
+        $options = $this->handleOptions($request);
         $technologies = $this->getDoctrine()->getRepository('TechnologiesBundle:Technology')->getSortedByTitle($options);
         foreach ($technologies as $technology) {
             $result[] = $technology->toArray();

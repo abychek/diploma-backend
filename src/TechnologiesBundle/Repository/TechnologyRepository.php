@@ -15,6 +15,6 @@ class TechnologyRepository extends AbstractRepository
      */
     public function getSortedByTitle(array $options)
     {
-        return $this->getSortedBy(self::FIELD_TITLE, $options);
+        return $this->getByOptions(self::FIELD_TITLE, $options);
     }
 }

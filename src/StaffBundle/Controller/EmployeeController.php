@@ -26,7 +26,7 @@ class EmployeeController extends RestController
     public function listAction(Request $request)
     {
         $result = [];
-        $options = $this->handlePagination($request);
+        $options = $this->handleOptions($request);
         $employees = $this->getDoctrine()->getRepository('StaffBundle:Employee')->getSortedByName($options);
         foreach ($employees as $employee) {
             $result[] = $employee->toArray();

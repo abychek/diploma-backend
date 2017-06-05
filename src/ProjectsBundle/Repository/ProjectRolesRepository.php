@@ -15,6 +15,6 @@ class ProjectRolesRepository extends AbstractRepository
      */
     public function getSortedByRoleName(array $options)
     {
-        return $this->getSortedBy(self::FIELD_ROLE_NAME, $options);
+        return $this->getByOptions(self::FIELD_ROLE_NAME, $options);
     }
 }

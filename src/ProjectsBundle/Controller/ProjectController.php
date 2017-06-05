@@ -3,7 +3,9 @@
 namespace ProjectsBundle\Controller;
 
 use AppBundle\Controller\RestController;
+use AppBundle\Repository\ResourceRepository;
 use ProjectsBundle\Entity\Project;
+use ProjectsBundle\Repository\ProjectRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -25,8 +27,8 @@ class ProjectController extends RestController
     public function listAction(Request $request)
     {
         $result = [];
-        $options = $this->handlePagination($request);
-        $projects = $this->getDoctrine()->getRepository('ProjectsBundle:Project')->getSortedByTitle($options);
+        $options = $this->handleOptions($request);
+        $projects = $this->getDoctrine()->getRepository('ProjectsBundle:Project')->getByOptions($options);
         foreach ($projects as $project) {
             $result[] = $project->toArray();
         }
@@ -128,5 +130,21 @@ class ProjectController extends RestController
         }
 
         return $this->generateInfoResponse(JsonResponse::HTTP_NOT_FOUND);
+    }
+
+    /**
+     * @return array
+     */
+    protected function getLikeFiltrationFields()
+    {
+        return [ProjectRepository::FIELD_TITLE];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getInFiltrationFields()
+    {
+        return [ProjectRepository::FIELD_MEMBERS, ProjectRepository::FIELD_TECHNOLOGIES];
     }
 }

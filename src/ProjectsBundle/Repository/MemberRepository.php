@@ -9,6 +9,7 @@ use ProjectsBundle\Entity\Project;
 
 class MemberRepository extends AbstractRepository
 {
+
     /**
      * @param Project $project
      * @param array $options

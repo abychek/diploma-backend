@@ -28,7 +28,7 @@ class MemberController extends RestController
     {
         if ($request->get('projectId') && $project = $this->getProjectById($request->get('projectId'))) {
             $result = [];
-            $options = $this->handlePagination($request);
+            $options = $this->handleOptions($request);
             $members = $this->getDoctrine()->getRepository('ProjectsBundle:Member')->getByProject($project, $options);
             foreach ($members as $member) {
                 $result[] = $member->toArray();
