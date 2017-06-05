@@ -9,6 +9,7 @@ use ProjectsBundle\Entity\Project;
 
 class MemberRepository extends AbstractRepository
 {
+    const FIELD_EMPLOYEE = 'employee';
 
     /**
      * @param Project $project
@@ -19,8 +20,12 @@ class MemberRepository extends AbstractRepository
     {
         $builder = $this->createQueryBuilder('m');
         $builder
+            ->join('m.employee', 'e')
             ->where('m.project = :project')
-            ->setParameter(':project', $project);
+            ->andWhere($builder->expr()->like('e.name', ':employee'))
+            ->setParameter(':project', $project)
+            ->setParameter(':employee', $options[self::FIELD_EMPLOYEE]);
+        ;
         $this->paginationWrapper($builder, $options);
 
         return $builder->getQuery()->getResult();

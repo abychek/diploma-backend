@@ -5,6 +5,7 @@ namespace ProjectsBundle\Controller;
 
 use AppBundle\Controller\RestController;
 use ProjectsBundle\Entity\Member;
+use ProjectsBundle\Repository\MemberRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -150,5 +151,21 @@ class MemberController extends RestController
     private function getProjectById($id)
     {
         return $this->getDoctrine()->getRepository('ProjectsBundle:Project')->find($id);
+    }
+
+    /**
+     * @return array
+     */
+    protected function getLikeFiltrationFields()
+    {
+        return [MemberRepository::FIELD_EMPLOYEE];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getInFiltrationFields()
+    {
+        return [];
     }
 }
