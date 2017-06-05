@@ -160,4 +160,24 @@ class ProjectController extends RestController
     {
         return [ProjectRepository::FIELD_MEMBERS, ProjectRepository::FIELD_TECHNOLOGIES];
     }
+
+    /**
+     * @return array
+     */
+    protected function getAllowedToSort()
+    {
+        return [
+            ProjectRepository::FIELD_TITLE,
+            ProjectRepository::FIELD_STARTED_AT,
+            ProjectRepository::FIELD_FINISHED_AT
+        ];
+    }
+
+    /**
+     * @return string
+     */
+    protected function getDefaultSort()
+    {
+        return ProjectRepository::FIELD_TITLE;
+    }
 }

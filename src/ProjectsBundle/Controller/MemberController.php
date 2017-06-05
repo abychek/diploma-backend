@@ -168,4 +168,22 @@ class MemberController extends RestController
     {
         return [];
     }
+
+    /**
+     * @return array
+     */
+    protected function getAllowedToSort()
+    {
+        return [
+            MemberRepository::FIELD_EMPLOYEE_NAME
+        ];
+    }
+
+    /**
+     * @return string
+     */
+    protected function getDefaultSort()
+    {
+        return MemberRepository::FIELD_EMPLOYEE_NAME;
+    }
 }

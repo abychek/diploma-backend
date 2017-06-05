@@ -20,10 +20,12 @@ abstract class AbstractRepository extends EntityRepository implements ResourceRe
             ->setMaxResults($options[self::OPTION_FROM] + $options[self::OPTION_SIZE]);
     }
 
-    protected function sortingWrapper(QueryBuilder &$builder, $options)
+    protected function sortingWrapper(QueryBuilder &$builder, $options, $alias = '')
     {
         if (array_key_exists(self::OPTION_SORT, $options)) {
-            $alias = $builder->getRootAliases()[0];
+            if (!$alias) {
+                $alias = $builder->getRootAliases()[0];
+            }
             $field = key($options[self::OPTION_SORT]);
             $sort = current($options[self::OPTION_SORT]);
             $builder

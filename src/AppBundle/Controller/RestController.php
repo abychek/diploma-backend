@@ -81,7 +81,10 @@ abstract class RestController extends Controller
         if ($request->query->has(ResourceRepository::OPTION_SORT)) {
             $sort = $request->query->get(ResourceRepository::OPTION_SORT);
             $sort = explode(':', $sort);
-            if (!isset($sort[1])) {
+            if (!in_array($sort[0], $this->getAllowedToSort())) {
+                $sort[0] = $this->getDefaultSort();
+            }
+            if (!isset($sort[1]) || !in_array($sort[1], ['ASC', 'DESC'])) {
                 $sort[1] = 'ASC';
             }
             $sort = [$sort[0] => $sort[1]];
@@ -91,6 +94,16 @@ abstract class RestController extends Controller
         }
         return $result;
     }
+
+    /**
+     * @return array
+     */
+    abstract protected function getAllowedToSort();
+
+    /**
+     * @return string
+     */
+    abstract protected function getDefaultSort();
 
     /**
      * @return array
