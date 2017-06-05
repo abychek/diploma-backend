@@ -132,6 +132,17 @@ class ProjectController extends RestController
         return $this->generateInfoResponse(JsonResponse::HTTP_NOT_FOUND);
     }
 
+    protected function handleOptions(Request $request)
+    {
+        $options = parent::handleOptions($request);
+        if ($request->query->has(ProjectRepository::FIELD_STARTED_AT)) {
+            $options[ProjectRepository::FIELD_STARTED_AT] = new \DateTime($request->query->get(ProjectRepository::FIELD_STARTED_AT));
+        }
+        if ($request->query->has(ProjectRepository::FIELD_FINISHED_AT)) {
+            $options[ProjectRepository::FIELD_STARTED_AT] = new \DateTime($request->query->get(ProjectRepository::FIELD_FINISHED_AT));
+        }
+    }
+
     /**
      * @return array
      */
