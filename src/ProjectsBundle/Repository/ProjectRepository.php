@@ -50,6 +50,7 @@ class ProjectRepository extends AbstractRepository
             ;
         }
         $this->paginationWrapper($builder, $options);
+        $this->sortingWrapper($builder, $options);
 
         return $builder->getQuery()->getResult();
     }

@@ -21,6 +21,7 @@ class ProjectRolesRepository extends AbstractRepository
             ->setParameter(':role', $options[self::FIELD_ROLE_NAME])
         ;
         $this->paginationWrapper($builder, $options);
+        $this->sortingWrapper($builder, $options);
 
         return $builder->getQuery()->getResult();
     }

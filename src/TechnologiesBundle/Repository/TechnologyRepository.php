@@ -21,6 +21,7 @@ class TechnologyRepository extends AbstractRepository
             ->setParameter(':title', $options[self::FIELD_TITLE])
         ;
         $this->paginationWrapper($builder, $options);
+        $this->sortingWrapper($builder, $options);
 
         return $builder->getQuery()->getResult();
     }

@@ -16,10 +16,14 @@ abstract class RestController extends Controller
      */
     protected function handleOptions(Request $request)
     {
-        return array_merge([
-            ResourceRepository::OPTION_FROM => $this->getFrom($request),
-            ResourceRepository::OPTION_SIZE => $this->getSize($request)
-        ], $this->getFiltration($request));
+        return array_merge(
+            [
+                ResourceRepository::OPTION_FROM => $this->getFrom($request),
+                ResourceRepository::OPTION_SIZE => $this->getSize($request)
+            ],
+            $this->getFiltration($request),
+            $this->getSort($request)
+        );
     }
 
     /**
@@ -69,6 +73,23 @@ abstract class RestController extends Controller
         }
 
         return $query;
+    }
+
+    private function getSort(Request $request)
+    {
+        $result = [];
+        if ($request->query->has(ResourceRepository::OPTION_SORT)) {
+            $sort = $request->query->get(ResourceRepository::OPTION_SORT);
+            $sort = explode(':', $sort);
+            if (!isset($sort[1])) {
+                $sort[1] = 'ASC';
+            }
+            $sort = [$sort[0] => $sort[1]];
+            $result = [
+                ResourceRepository::OPTION_SORT => $sort
+            ];
+        }
+        return $result;
     }
 
     /**

@@ -141,6 +141,8 @@ class ProjectController extends RestController
         if ($request->query->has(ProjectRepository::FIELD_FINISHED_AT)) {
             $options[ProjectRepository::FIELD_STARTED_AT] = new \DateTime($request->query->get(ProjectRepository::FIELD_FINISHED_AT));
         }
+
+        return $options;
     }
 
     /**

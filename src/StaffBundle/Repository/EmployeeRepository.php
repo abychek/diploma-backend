@@ -41,6 +41,7 @@ class EmployeeRepository extends AbstractRepository
                 ->andWhere($builder->expr()->in('position.id', $options[self::FIELD_POSITIONS]));
         }
         $this->paginationWrapper($builder, $options);
+        $this->sortingWrapper($builder, $options);
 
         return $builder->getQuery()->getResult();
     }

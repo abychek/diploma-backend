@@ -27,6 +27,7 @@ class MemberRepository extends AbstractRepository
             ->setParameter(':employee', $options[self::FIELD_EMPLOYEE]);
         ;
         $this->paginationWrapper($builder, $options);
+        $this->sortingWrapper($builder, $options);
 
         return $builder->getQuery()->getResult();
     }

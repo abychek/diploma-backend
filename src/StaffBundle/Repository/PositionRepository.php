@@ -22,6 +22,7 @@ class PositionRepository extends AbstractRepository
             ->setParameter(':name', $options[self::FIELD_NAME])
         ;
         $this->paginationWrapper($builder, $options);
+        $this->sortingWrapper($builder, $options);
 
         return $builder->getQuery()->getResult();
     }
