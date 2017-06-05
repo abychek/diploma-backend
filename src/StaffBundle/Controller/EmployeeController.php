@@ -194,7 +194,7 @@ class EmployeeController extends RestController
      *  resource=true,
      *  description="Remove concrete employee.",
      *  parameters={
-     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Project id"}
+     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Employee id"}
      *  }
      * )
      * @Route("/{id}/")

@@ -4,6 +4,7 @@ namespace StaffBundle\Controller;
 
 
 use AppBundle\Controller\RestController;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use StaffBundle\Entity\Position;
@@ -19,6 +20,26 @@ use Symfony\Component\HttpFoundation\Request;
 class PositionController extends RestController
 {
     /**
+     * @ApiDoc(
+     *  section="Positions",
+     *  resource=true,
+     *  description="Return list of positions.",
+     *  filters={
+     *      {"name"="size", "dataType"="integer", "description"="Size of returned data"},
+     *      {"name"="from", "dataType"="integer", "description"="Start position of returned data"},
+     *      {
+     *          "name"="sort",
+     *          "dataType"="string",
+     *          "pattern"="field:(name); strategy:(ASC|DESC)",
+     *          "description"="Sorted field and strategy ({field}:{strategy})"
+     *      },
+     *      {
+     *          "name"="name",
+     *          "dataType"="string",
+     *          "description"="Filtrate employees by Name."
+     *      }
+     *  }
+     * )
      * @Route("/")
      * @Method({"GET"})
      * @param Request $request
@@ -37,6 +58,14 @@ class PositionController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="Positions",
+     *  resource=true,
+     *  description="Return concrete position.",
+     *  parameters={
+     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Position id"}
+     *  }
+     * )
      * @Route("/{id}/")
      * @Method({"GET"})
      * @param Request $request
@@ -53,6 +82,18 @@ class PositionController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="Positions",
+     *  resource=true,
+     *  description="Create new Position.",
+     *  requirements={
+     *      {
+     *          "name"="name",
+     *          "dataType"="string",
+     *          "description"="Position name."
+     *      }
+     *  }
+     * )
      * @Route("/")
      * @Method({"POST"})
      * @param Request $request
@@ -74,7 +115,28 @@ class PositionController extends RestController
     }
 
     /**
-     * @Route("/{$id}")
+     * @ApiDoc(
+     *  section="Positions",
+     *  resource=true,
+     *  description="Update position.",
+     *  parameters={
+     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Position id"},
+     *      {
+     *          "name"="name",
+     *          "dataType"="string",
+     *          "required"=false,
+     *          "description"="Position name."
+     *      },
+     *      {
+     *          "name"="status",
+     *          "dataType"="string",
+     *          "required"=false,
+     *          "pattern"="(available|unavailable)",
+     *          "description"="Position status."
+     *      }
+     *  }
+     * )
+     * @Route("/{id}/")
      * @Method({"PUT"})
      * @param Request $request
      * @param $id
@@ -100,7 +162,15 @@ class PositionController extends RestController
     }
 
     /**
-     * @Route("/{$id}")
+     * @ApiDoc(
+     *  section="Positions",
+     *  resource=true,
+     *  description="Remove concrete position.",
+     *  parameters={
+     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Position id"}
+     *  }
+     * )
+     * @Route("/{id}/")
      * @Method({"DELETE"})
      * @param Request $request
      * @param $id

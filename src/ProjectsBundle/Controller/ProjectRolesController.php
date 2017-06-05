@@ -170,7 +170,7 @@ class ProjectRolesController extends RestController
      *  resource=true,
      *  description="Remove concrete project role.",
      *  parameters={
-     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Project id"}
+     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Project role id"}
      *  }
      * )
      * @Route("/{id}/")
