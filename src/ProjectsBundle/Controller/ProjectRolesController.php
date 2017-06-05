@@ -4,6 +4,7 @@ namespace ProjectsBundle\Controller;
 
 
 use AppBundle\Controller\RestController;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use ProjectsBundle\Entity\ProjectRole;
 use ProjectsBundle\Repository\ProjectRolesRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -20,6 +21,26 @@ class ProjectRolesController extends RestController
 {
 
     /**
+     * @ApiDoc(
+     *  section="Project roles",
+     *  resource=true,
+     *  description="Return list of project roles.",
+     *  filters={
+     *      {"name"="size", "dataType"="integer", "description"="Size of returned data"},
+     *      {"name"="from", "dataType"="integer", "description"="Start position of returned data"},
+     *      {
+     *          "name"="sort",
+     *          "dataType"="string",
+     *          "pattern"="field:(name); strategy:(ASC|DESC)",
+     *          "description"="Sorted field and strategy ({field}:{strategy})"
+     *      },
+     *      {
+     *          "name"="name",
+     *          "dataType"="string",
+     *          "description"="Filtrate project roles by Name."
+     *      }
+     *  }
+     * )
      * @Route("/")
      * @Method({"GET"})
      * @param Request $request
@@ -38,6 +59,14 @@ class ProjectRolesController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="Project roles",
+     *  resource=true,
+     *  description="Return concrete project role.",
+     *  parameters={
+     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Project role id"}
+     *  }
+     * )
      * @Route("/{id}/")
      * @Method({"GET"})
      * @param Request $request
@@ -54,6 +83,18 @@ class ProjectRolesController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="Project roles",
+     *  resource=true,
+     *  description="Create new project role.",
+     *  requirements={
+     *      {
+     *          "name"="name",
+     *          "dataType"="string",
+     *          "description"="Project role name."
+     *      }
+     *  }
+     * )
      * @Route("/")
      * @Method({"POST"})
      * @param Request $request
@@ -76,6 +117,27 @@ class ProjectRolesController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="Project roles",
+     *  resource=true,
+     *  description="Update project.",
+     *  parameters={
+     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Project id"},
+     *      {
+     *          "name"="name",
+     *          "dataType"="string",
+     *          "required"=false,
+     *          "description"="Project role name."
+     *      },
+     *      {
+     *          "name"="status",
+     *          "dataType"="string",
+     *          "required"=false,
+     *          "pattern"="(available|unavailable)",
+     *          "description"="Project status."
+     *      }
+     *  }
+     * )
      * @Route("/{id}/")
      * @Method({"PUT"})
      * @param Request $request
@@ -103,6 +165,14 @@ class ProjectRolesController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="Project roles",
+     *  resource=true,
+     *  description="Remove concrete project role.",
+     *  parameters={
+     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Project id"}
+     *  }
+     * )
      * @Route("/{id}/")
      * @Method({"DELETE"})
      * @param Request $request

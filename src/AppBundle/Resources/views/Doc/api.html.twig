@@ -670,10 +670,999 @@ form .request-content {
             <ul id="resources">
                     <div id="summary">
         <ul>
+                            <li><a href="#section-Project roles">Project roles</a></li>
                             <li><a href="#section-Projects">Projects</a></li>
                     </ul>
     </div>
                         <li class="section active">
+                <div class="actions">
+                    <a class="action-show-hide">Show/hide</a>
+                    <a class="action-list">List Operations</a>
+                    <a class="action-expand">Expand Operations</a>
+                </div>
+                <h1>Project roles</h1>
+                <ul class="section-list" >
+                            <a id="section-Project roles"></a>
+            <li class="resource">
+                <div class="heading">
+                                            <h2>/api/project-roles/</h2>
+                                    </div>
+                <ul class="endpoints">
+                    <li class="endpoint">
+                        <ul class="operations">
+                                                            <li class="get operation" id="get--api-project-roles-">
+    <div class="heading toggler" data-href="#get--api-project-roles-">
+        <h3>
+            <span class="http_method">
+                <i>GET</i>
+            </span>
+
+            
+                        
+            <span class="path">
+                /api/project-roles/
+            </span>
+                   </h3>
+        <ul class="options">
+                            <li>Return list of project roles.</li>
+                    </ul>
+    </div>
+
+    <div class="content" style="display: none;">
+        <ul class="tabs">
+                            <li class="selected" data-pane="content">Documentation</li>
+                <li data-pane="sandbox">Sandbox</li>
+                    </ul>
+
+        <div class="panes">
+            <div class="pane content selected">
+            
+            
+            
+                            <h4>Filters</h4>
+                <table class="fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Information</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <td>size</td>
+                            <td>
+                                <table>
+                                                                    <tr>
+                                        <td>Datatype</td>
+                                        <td>integer</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>Description</td>
+                                        <td>Size of returned data</td>
+                                    </tr>
+                                                                </table>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td>from</td>
+                            <td>
+                                <table>
+                                                                    <tr>
+                                        <td>Datatype</td>
+                                        <td>integer</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>Description</td>
+                                        <td>Start position of returned data</td>
+                                    </tr>
+                                                                </table>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td>sort</td>
+                            <td>
+                                <table>
+                                                                    <tr>
+                                        <td>Datatype</td>
+                                        <td>string</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>Pattern</td>
+                                        <td>field:(name); strategy:(ASC|DESC)</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>Description</td>
+                                        <td>Sorted field and strategy ({field}:{strategy})</td>
+                                    </tr>
+                                                                </table>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td>name</td>
+                            <td>
+                                <table>
+                                                                    <tr>
+                                        <td>Datatype</td>
+                                        <td>string</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>Description</td>
+                                        <td>Filtrate project roles by Name.</td>
+                                    </tr>
+                                                                </table>
+                            </td>
+                        </tr>
+                                        </tbody>
+                </table>
+            
+            
+
+            
+            
+            
+            
+            </div>
+
+                            <div class="pane sandbox">
+                                            <form method="" action="/api/project-roles/">
+                            <fieldset class="parameters">
+                                <legend>Input</legend>
+                                                                                                    <h4>Filters</h4>
+                                                                            <p class="tuple filter">
+                                            <input type="text" class="key" value="size" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="Size of returned data" /> <span class="remove">-</span>
+                                        </p>
+                                                                            <p class="tuple filter">
+                                            <input type="text" class="key" value="from" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="Start position of returned data" /> <span class="remove">-</span>
+                                        </p>
+                                                                            <p class="tuple filter">
+                                            <input type="text" class="key" value="sort" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="Sorted field and strategy ({field}:{strategy})" /> <span class="remove">-</span>
+                                        </p>
+                                                                            <p class="tuple filter">
+                                            <input type="text" class="key" value="name" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="Filtrate project roles by Name." /> <span class="remove">-</span>
+                                        </p>
+                                                                                                    
+                            </fieldset>
+
+                            <fieldset class="headers">
+                                                                                                    <input type="hidden" name="header_method" value="GET" />
+                                
+                                <legend>Headers</legend>
+
+                                
+                                
+                                <p class="tuple">
+                                    <input type="text" class="key" placeholder="Key" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                                </p>
+
+                                <button type="button" class="add_header">New header</button>
+                            </fieldset>
+
+                            <fieldset class="request-content">
+                                <legend>Content</legend>
+
+                                <textarea class="content" placeholder="Content set here will override the parameters that do not match the url"></textarea>
+
+                                <p class="tuple">
+                                    <input type="text" class="key content-type" value="Content-Type" disabled="disabled" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" />
+                                    <button  type="button" class="set-content-type">Set header</button> <small>Replaces header if set</small>
+                                </p>
+                            </fieldset>
+
+                            <div class="buttons">
+                                <input type="submit" value="Try!" />
+                            </div>
+                        </form>
+
+                        <script type="text/x-tmpl" class="parameters_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                                <option value="textarea">Textarea</option>
+                                            </select>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+                        <script type="text/x-tmpl" class="headers_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+
+                        <div class="result">
+                            <h4>Request URL</h4>
+                            <pre class="url"></pre>
+
+                            <h4 class="request-body-header">Request body</h4>
+                            <pre class="request-body"></pre>
+
+                            <h4>Response Headers&nbsp;<small>[<a href="" class="to-expand">Expand</a>]</small>&nbsp;<small class="profiler">[<a href="" class="profiler-link" target="_blank">Profiler</a>]</small></h4>
+                            <pre class="headers to-expand"></pre>
+
+                            <h4>Response Body&nbsp;<small>[<a href="" class="to-raw">Raw</a>]</small></h4>
+                            <pre class="response prettyprint"></pre>
+
+                            <h4>Curl Command Line</h4>
+                            <pre class="curl-command"></pre>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</li>
+                                                            <li class="post operation" id="post--api-project-roles-">
+    <div class="heading toggler" data-href="#post--api-project-roles-">
+        <h3>
+            <span class="http_method">
+                <i>POST</i>
+            </span>
+
+            
+                        
+            <span class="path">
+                /api/project-roles/
+            </span>
+                   </h3>
+        <ul class="options">
+                            <li>Create new project role.</li>
+                    </ul>
+    </div>
+
+    <div class="content" style="display: none;">
+        <ul class="tabs">
+                            <li class="selected" data-pane="content">Documentation</li>
+                <li data-pane="sandbox">Sandbox</li>
+                    </ul>
+
+        <div class="panes">
+            <div class="pane content selected">
+            
+            
+                            <h4>Requirements</h4>
+                <table class="fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Requirement</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                    <tr>
+                                <td>name</td>
+                                <td></td>
+                                <td>string</td>
+                                <td>Project role name.</td>
+                            </tr>
+                                            </tbody>
+                </table>
+            
+            
+            
+
+            
+            
+            
+            
+            </div>
+
+                            <div class="pane sandbox">
+                                            <form method="" action="/api/project-roles/">
+                            <fieldset class="parameters">
+                                <legend>Input</legend>
+                                                                    <h4>Requirements</h4>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="name" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="Project role name." /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                    
+                            </fieldset>
+
+                            <fieldset class="headers">
+                                                                                                    <input type="hidden" name="header_method" value="POST" />
+                                
+                                <legend>Headers</legend>
+
+                                
+                                
+                                <p class="tuple">
+                                    <input type="text" class="key" placeholder="Key" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                                </p>
+
+                                <button type="button" class="add_header">New header</button>
+                            </fieldset>
+
+                            <fieldset class="request-content">
+                                <legend>Content</legend>
+
+                                <textarea class="content" placeholder="Content set here will override the parameters that do not match the url"></textarea>
+
+                                <p class="tuple">
+                                    <input type="text" class="key content-type" value="Content-Type" disabled="disabled" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" />
+                                    <button  type="button" class="set-content-type">Set header</button> <small>Replaces header if set</small>
+                                </p>
+                            </fieldset>
+
+                            <div class="buttons">
+                                <input type="submit" value="Try!" />
+                            </div>
+                        </form>
+
+                        <script type="text/x-tmpl" class="parameters_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                                <option value="textarea">Textarea</option>
+                                            </select>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+                        <script type="text/x-tmpl" class="headers_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+
+                        <div class="result">
+                            <h4>Request URL</h4>
+                            <pre class="url"></pre>
+
+                            <h4 class="request-body-header">Request body</h4>
+                            <pre class="request-body"></pre>
+
+                            <h4>Response Headers&nbsp;<small>[<a href="" class="to-expand">Expand</a>]</small>&nbsp;<small class="profiler">[<a href="" class="profiler-link" target="_blank">Profiler</a>]</small></h4>
+                            <pre class="headers to-expand"></pre>
+
+                            <h4>Response Body&nbsp;<small>[<a href="" class="to-raw">Raw</a>]</small></h4>
+                            <pre class="response prettyprint"></pre>
+
+                            <h4>Curl Command Line</h4>
+                            <pre class="curl-command"></pre>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</li>
+                                                    </ul>
+                    </li>
+                </ul>
+            </li>
+                    <a id="section-Project roles"></a>
+            <li class="resource">
+                <div class="heading">
+                                            <h2>/api/project-roles/{id}/</h2>
+                                    </div>
+                <ul class="endpoints">
+                    <li class="endpoint">
+                        <ul class="operations">
+                                                            <li class="delete operation" id="delete--api-project-roles-{id}-">
+    <div class="heading toggler" data-href="#delete--api-project-roles-{id}-">
+        <h3>
+            <span class="http_method">
+                <i>DELETE</i>
+            </span>
+
+            
+                        
+            <span class="path">
+                /api/project-roles/{id}/
+            </span>
+                   </h3>
+        <ul class="options">
+                            <li>Remove concrete project role.</li>
+                    </ul>
+    </div>
+
+    <div class="content" style="display: none;">
+        <ul class="tabs">
+                            <li class="selected" data-pane="content">Documentation</li>
+                <li data-pane="sandbox">Sandbox</li>
+                    </ul>
+
+        <div class="panes">
+            <div class="pane content selected">
+            
+            
+                            <h4>Requirements</h4>
+                <table class="fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Requirement</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                    <tr>
+                                <td>id</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                                            </tbody>
+                </table>
+            
+            
+                            <h4>Parameters</h4>
+                <table class='fullwidth'>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required?</th>
+                            <th>Format</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                                                    <tr>
+                                    <td>id</td>
+                                    <td>integer</td>
+                                    <td>true</td>
+                                    <td class="format"></td>
+                                    <td>Project id</td>
+                                </tr>
+                                                                        </tbody>
+                </table>
+            
+
+            
+            
+            
+            
+            </div>
+
+                            <div class="pane sandbox">
+                                            <form method="" action="/api/project-roles/{id}/">
+                            <fieldset class="parameters">
+                                <legend>Input</legend>
+                                                                    <h4>Requirements</h4>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="id" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                                                        <h4>Parameters</h4>
+                                                                                                                <p class="tuple" data-dataType="integer" data-format="" data-description="Project id">
+                                            <input type="text" class="key" value="id" placeholder="Key" />
+                                            <span>=</span>
+                                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                                <option value="textarea">Textarea</option>
+                                            </select>
+                                            <input type="text" class="value" placeholder="[integer] Project id"  value="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                            <button type="button" class="add_parameter">New parameter</button>
+                                
+                            </fieldset>
+
+                            <fieldset class="headers">
+                                                                                                    <input type="hidden" name="header_method" value="DELETE" />
+                                
+                                <legend>Headers</legend>
+
+                                
+                                
+                                <p class="tuple">
+                                    <input type="text" class="key" placeholder="Key" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                                </p>
+
+                                <button type="button" class="add_header">New header</button>
+                            </fieldset>
+
+                            <fieldset class="request-content">
+                                <legend>Content</legend>
+
+                                <textarea class="content" placeholder="Content set here will override the parameters that do not match the url"></textarea>
+
+                                <p class="tuple">
+                                    <input type="text" class="key content-type" value="Content-Type" disabled="disabled" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" />
+                                    <button  type="button" class="set-content-type">Set header</button> <small>Replaces header if set</small>
+                                </p>
+                            </fieldset>
+
+                            <div class="buttons">
+                                <input type="submit" value="Try!" />
+                            </div>
+                        </form>
+
+                        <script type="text/x-tmpl" class="parameters_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                                <option value="textarea">Textarea</option>
+                                            </select>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+                        <script type="text/x-tmpl" class="headers_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+
+                        <div class="result">
+                            <h4>Request URL</h4>
+                            <pre class="url"></pre>
+
+                            <h4 class="request-body-header">Request body</h4>
+                            <pre class="request-body"></pre>
+
+                            <h4>Response Headers&nbsp;<small>[<a href="" class="to-expand">Expand</a>]</small>&nbsp;<small class="profiler">[<a href="" class="profiler-link" target="_blank">Profiler</a>]</small></h4>
+                            <pre class="headers to-expand"></pre>
+
+                            <h4>Response Body&nbsp;<small>[<a href="" class="to-raw">Raw</a>]</small></h4>
+                            <pre class="response prettyprint"></pre>
+
+                            <h4>Curl Command Line</h4>
+                            <pre class="curl-command"></pre>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</li>
+                                                            <li class="get operation" id="get--api-project-roles-{id}-">
+    <div class="heading toggler" data-href="#get--api-project-roles-{id}-">
+        <h3>
+            <span class="http_method">
+                <i>GET</i>
+            </span>
+
+            
+                        
+            <span class="path">
+                /api/project-roles/{id}/
+            </span>
+                   </h3>
+        <ul class="options">
+                            <li>Return concrete project role.</li>
+                    </ul>
+    </div>
+
+    <div class="content" style="display: none;">
+        <ul class="tabs">
+                            <li class="selected" data-pane="content">Documentation</li>
+                <li data-pane="sandbox">Sandbox</li>
+                    </ul>
+
+        <div class="panes">
+            <div class="pane content selected">
+            
+            
+                            <h4>Requirements</h4>
+                <table class="fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Requirement</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                    <tr>
+                                <td>id</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                                            </tbody>
+                </table>
+            
+            
+                            <h4>Parameters</h4>
+                <table class='fullwidth'>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required?</th>
+                            <th>Format</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                                                    <tr>
+                                    <td>id</td>
+                                    <td>integer</td>
+                                    <td>true</td>
+                                    <td class="format"></td>
+                                    <td>Project role id</td>
+                                </tr>
+                                                                        </tbody>
+                </table>
+            
+
+            
+            
+            
+            
+            </div>
+
+                            <div class="pane sandbox">
+                                            <form method="" action="/api/project-roles/{id}/">
+                            <fieldset class="parameters">
+                                <legend>Input</legend>
+                                                                    <h4>Requirements</h4>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="id" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                                                        <h4>Parameters</h4>
+                                                                                                                <p class="tuple" data-dataType="integer" data-format="" data-description="Project role id">
+                                            <input type="text" class="key" value="id" placeholder="Key" />
+                                            <span>=</span>
+                                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                                <option value="textarea">Textarea</option>
+                                            </select>
+                                            <input type="text" class="value" placeholder="[integer] Project role id"  value="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                            <button type="button" class="add_parameter">New parameter</button>
+                                
+                            </fieldset>
+
+                            <fieldset class="headers">
+                                                                                                    <input type="hidden" name="header_method" value="GET" />
+                                
+                                <legend>Headers</legend>
+
+                                
+                                
+                                <p class="tuple">
+                                    <input type="text" class="key" placeholder="Key" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                                </p>
+
+                                <button type="button" class="add_header">New header</button>
+                            </fieldset>
+
+                            <fieldset class="request-content">
+                                <legend>Content</legend>
+
+                                <textarea class="content" placeholder="Content set here will override the parameters that do not match the url"></textarea>
+
+                                <p class="tuple">
+                                    <input type="text" class="key content-type" value="Content-Type" disabled="disabled" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" />
+                                    <button  type="button" class="set-content-type">Set header</button> <small>Replaces header if set</small>
+                                </p>
+                            </fieldset>
+
+                            <div class="buttons">
+                                <input type="submit" value="Try!" />
+                            </div>
+                        </form>
+
+                        <script type="text/x-tmpl" class="parameters_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                                <option value="textarea">Textarea</option>
+                                            </select>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+                        <script type="text/x-tmpl" class="headers_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+
+                        <div class="result">
+                            <h4>Request URL</h4>
+                            <pre class="url"></pre>
+
+                            <h4 class="request-body-header">Request body</h4>
+                            <pre class="request-body"></pre>
+
+                            <h4>Response Headers&nbsp;<small>[<a href="" class="to-expand">Expand</a>]</small>&nbsp;<small class="profiler">[<a href="" class="profiler-link" target="_blank">Profiler</a>]</small></h4>
+                            <pre class="headers to-expand"></pre>
+
+                            <h4>Response Body&nbsp;<small>[<a href="" class="to-raw">Raw</a>]</small></h4>
+                            <pre class="response prettyprint"></pre>
+
+                            <h4>Curl Command Line</h4>
+                            <pre class="curl-command"></pre>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</li>
+                                                            <li class="put operation" id="put--api-project-roles-{id}-">
+    <div class="heading toggler" data-href="#put--api-project-roles-{id}-">
+        <h3>
+            <span class="http_method">
+                <i>PUT</i>
+            </span>
+
+            
+                        
+            <span class="path">
+                /api/project-roles/{id}/
+            </span>
+                   </h3>
+        <ul class="options">
+                            <li>Update project.</li>
+                    </ul>
+    </div>
+
+    <div class="content" style="display: none;">
+        <ul class="tabs">
+                            <li class="selected" data-pane="content">Documentation</li>
+                <li data-pane="sandbox">Sandbox</li>
+                    </ul>
+
+        <div class="panes">
+            <div class="pane content selected">
+            
+            
+                            <h4>Requirements</h4>
+                <table class="fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Requirement</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                    <tr>
+                                <td>id</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                                            </tbody>
+                </table>
+            
+            
+                            <h4>Parameters</h4>
+                <table class='fullwidth'>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required?</th>
+                            <th>Format</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                                                    <tr>
+                                    <td>id</td>
+                                    <td>integer</td>
+                                    <td>true</td>
+                                    <td class="format"></td>
+                                    <td>Project id</td>
+                                </tr>
+                                                                                                                <tr>
+                                    <td>name</td>
+                                    <td>string</td>
+                                    <td>false</td>
+                                    <td class="format"></td>
+                                    <td>Project role name.</td>
+                                </tr>
+                                                                                                                <tr>
+                                    <td>status</td>
+                                    <td>string</td>
+                                    <td>false</td>
+                                    <td class="format"></td>
+                                    <td>Project status.</td>
+                                </tr>
+                                                                        </tbody>
+                </table>
+            
+
+            
+            
+            
+            
+            </div>
+
+                            <div class="pane sandbox">
+                                            <form method="" action="/api/project-roles/{id}/">
+                            <fieldset class="parameters">
+                                <legend>Input</legend>
+                                                                    <h4>Requirements</h4>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="id" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                                                        <h4>Parameters</h4>
+                                                                                                                <p class="tuple" data-dataType="integer" data-format="" data-description="Project id">
+                                            <input type="text" class="key" value="id" placeholder="Key" />
+                                            <span>=</span>
+                                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                                <option value="textarea">Textarea</option>
+                                            </select>
+                                            <input type="text" class="value" placeholder="[integer] Project id"  value="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                                    <p class="tuple" data-dataType="string" data-format="" data-description="Project role name.">
+                                            <input type="text" class="key" value="name" placeholder="Key" />
+                                            <span>=</span>
+                                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                                <option value="textarea">Textarea</option>
+                                            </select>
+                                            <input type="text" class="value" placeholder="[string] Project role name."  value="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                                    <p class="tuple" data-dataType="string" data-format="" data-description="Project status.">
+                                            <input type="text" class="key" value="status" placeholder="Key" />
+                                            <span>=</span>
+                                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                                <option value="textarea">Textarea</option>
+                                            </select>
+                                            <input type="text" class="value" placeholder="[string] Project status."  value="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                            <button type="button" class="add_parameter">New parameter</button>
+                                
+                            </fieldset>
+
+                            <fieldset class="headers">
+                                                                                                    <input type="hidden" name="header_method" value="PUT" />
+                                
+                                <legend>Headers</legend>
+
+                                
+                                
+                                <p class="tuple">
+                                    <input type="text" class="key" placeholder="Key" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                                </p>
+
+                                <button type="button" class="add_header">New header</button>
+                            </fieldset>
+
+                            <fieldset class="request-content">
+                                <legend>Content</legend>
+
+                                <textarea class="content" placeholder="Content set here will override the parameters that do not match the url"></textarea>
+
+                                <p class="tuple">
+                                    <input type="text" class="key content-type" value="Content-Type" disabled="disabled" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" />
+                                    <button  type="button" class="set-content-type">Set header</button> <small>Replaces header if set</small>
+                                </p>
+                            </fieldset>
+
+                            <div class="buttons">
+                                <input type="submit" value="Try!" />
+                            </div>
+                        </form>
+
+                        <script type="text/x-tmpl" class="parameters_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                                <option value="textarea">Textarea</option>
+                                            </select>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+                        <script type="text/x-tmpl" class="headers_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+
+                        <div class="result">
+                            <h4>Request URL</h4>
+                            <pre class="url"></pre>
+
+                            <h4 class="request-body-header">Request body</h4>
+                            <pre class="request-body"></pre>
+
+                            <h4>Response Headers&nbsp;<small>[<a href="" class="to-expand">Expand</a>]</small>&nbsp;<small class="profiler">[<a href="" class="profiler-link" target="_blank">Profiler</a>]</small></h4>
+                            <pre class="headers to-expand"></pre>
+
+                            <h4>Response Body&nbsp;<small>[<a href="" class="to-raw">Raw</a>]</small></h4>
+                            <pre class="response prettyprint"></pre>
+
+                            <h4>Curl Command Line</h4>
+                            <pre class="curl-command"></pre>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</li>
+                                                    </ul>
+                    </li>
+                </ul>
+            </li>
+                                </ul>
+            </li>
+                                <li class="section active">
                 <div class="actions">
                     <a class="action-show-hide">Show/hide</a>
                     <a class="action-list">List Operations</a>
@@ -2362,6 +3351,219 @@ form .request-content {
                 <ul class="endpoints">
                     <li class="endpoint">
                         <ul class="operations">
+                                                            <li class="delete operation" id="delete--api-projects-{projectId}-members-{id}-">
+    <div class="heading toggler" data-href="#delete--api-projects-{projectId}-members-{id}-">
+        <h3>
+            <span class="http_method">
+                <i>DELETE</i>
+            </span>
+
+            
+                        
+            <span class="path">
+                /api/projects/{projectId}/members/{id}/
+            </span>
+                   </h3>
+        <ul class="options">
+                            <li>Remove concrete project member.</li>
+                    </ul>
+    </div>
+
+    <div class="content" style="display: none;">
+        <ul class="tabs">
+                            <li class="selected" data-pane="content">Documentation</li>
+                <li data-pane="sandbox">Sandbox</li>
+                    </ul>
+
+        <div class="panes">
+            <div class="pane content selected">
+            
+            
+                            <h4>Requirements</h4>
+                <table class="fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Requirement</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                    <tr>
+                                <td>projectId</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>id</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                                            </tbody>
+                </table>
+            
+            
+                            <h4>Parameters</h4>
+                <table class='fullwidth'>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required?</th>
+                            <th>Format</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                                                    <tr>
+                                    <td>projectId</td>
+                                    <td>integer</td>
+                                    <td>true</td>
+                                    <td class="format"></td>
+                                    <td>Project id</td>
+                                </tr>
+                                                                                                                <tr>
+                                    <td>id</td>
+                                    <td>integer</td>
+                                    <td>true</td>
+                                    <td class="format"></td>
+                                    <td>Member id</td>
+                                </tr>
+                                                                        </tbody>
+                </table>
+            
+
+            
+            
+            
+            
+            </div>
+
+                            <div class="pane sandbox">
+                                            <form method="" action="/api/projects/{projectId}/members/{id}/">
+                            <fieldset class="parameters">
+                                <legend>Input</legend>
+                                                                    <h4>Requirements</h4>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="projectId" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="id" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                                                        <h4>Parameters</h4>
+                                                                                                                <p class="tuple" data-dataType="integer" data-format="" data-description="Project id">
+                                            <input type="text" class="key" value="projectId" placeholder="Key" />
+                                            <span>=</span>
+                                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                                <option value="textarea">Textarea</option>
+                                            </select>
+                                            <input type="text" class="value" placeholder="[integer] Project id"  value="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                                    <p class="tuple" data-dataType="integer" data-format="" data-description="Member id">
+                                            <input type="text" class="key" value="id" placeholder="Key" />
+                                            <span>=</span>
+                                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                                <option value="textarea">Textarea</option>
+                                            </select>
+                                            <input type="text" class="value" placeholder="[integer] Member id"  value="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                            <button type="button" class="add_parameter">New parameter</button>
+                                
+                            </fieldset>
+
+                            <fieldset class="headers">
+                                                                                                    <input type="hidden" name="header_method" value="DELETE" />
+                                
+                                <legend>Headers</legend>
+
+                                
+                                
+                                <p class="tuple">
+                                    <input type="text" class="key" placeholder="Key" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                                </p>
+
+                                <button type="button" class="add_header">New header</button>
+                            </fieldset>
+
+                            <fieldset class="request-content">
+                                <legend>Content</legend>
+
+                                <textarea class="content" placeholder="Content set here will override the parameters that do not match the url"></textarea>
+
+                                <p class="tuple">
+                                    <input type="text" class="key content-type" value="Content-Type" disabled="disabled" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" />
+                                    <button  type="button" class="set-content-type">Set header</button> <small>Replaces header if set</small>
+                                </p>
+                            </fieldset>
+
+                            <div class="buttons">
+                                <input type="submit" value="Try!" />
+                            </div>
+                        </form>
+
+                        <script type="text/x-tmpl" class="parameters_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                                <option value="textarea">Textarea</option>
+                                            </select>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+                        <script type="text/x-tmpl" class="headers_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+
+                        <div class="result">
+                            <h4>Request URL</h4>
+                            <pre class="url"></pre>
+
+                            <h4 class="request-body-header">Request body</h4>
+                            <pre class="request-body"></pre>
+
+                            <h4>Response Headers&nbsp;<small>[<a href="" class="to-expand">Expand</a>]</small>&nbsp;<small class="profiler">[<a href="" class="profiler-link" target="_blank">Profiler</a>]</small></h4>
+                            <pre class="headers to-expand"></pre>
+
+                            <h4>Response Body&nbsp;<small>[<a href="" class="to-raw">Raw</a>]</small></h4>
+                            <pre class="response prettyprint"></pre>
+
+                            <h4>Curl Command Line</h4>
+                            <pre class="curl-command"></pre>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</li>
                                                             <li class="get operation" id="get--api-projects-{projectId}-members-{id}-">
     <div class="heading toggler" data-href="#get--api-projects-{projectId}-members-{id}-">
         <h3>
@@ -2835,7 +4037,7 @@ form .request-content {
                         </ul>
         </div>
         <p id="colophon">
-            Documentation auto-generated on Mon, 05 Jun 17 19:57:11 +0300
+            Documentation auto-generated on Mon, 05 Jun 17 20:08:25 +0300
         </p>
         <script type="text/javascript">
 
