@@ -4,6 +4,7 @@ namespace ProjectsBundle\Controller;
 
 use AppBundle\Controller\RestController;
 use AppBundle\Repository\ResourceRepository;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use ProjectsBundle\Entity\Project;
 use ProjectsBundle\Repository\ProjectRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -19,6 +20,10 @@ use Symfony\Component\HttpFoundation\Request;
 class ProjectController extends RestController
 {
     /**
+     * @ApiDoc(
+     *  resource=true,
+     *  description="This is a description of your API method"
+     * )
      * @Route("/")
      * @Method({"GET"})
      * @param Request $request

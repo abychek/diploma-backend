@@ -14,6 +14,6 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return new JsonResponse(['message' => 'Im working.']);
+        return $this->render('@App/Doc/api.html.twig');
     }
 }
