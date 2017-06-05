@@ -27,12 +27,13 @@ class ProjectRepository extends AbstractRepository
         if (array_key_exists(self::FIELD_MEMBERS, $options)) {
             $builder
                 ->join('p.members', 'm')
-                ->andWhere($builder->expr()->in('m.id', $options[self::FIELD_MEMBERS]));
+                ->join('m.employee', 'e')
+                ->andWhere($builder->expr()->in('e.id', $options[self::FIELD_MEMBERS]));
         }
         if (array_key_exists(self::FIELD_TECHNOLOGIES, $options)) {
             $builder
                 ->join('p.technologies', 't')
-                ->andWhere($builder->expr()->in('t.id', $options[self::FIELD_MEMBERS]));
+                ->andWhere($builder->expr()->in('t.id', $options[self::FIELD_TECHNOLOGIES]));
         }
         $this->paginationWrapper($builder, $options);
 
