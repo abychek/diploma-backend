@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use TechnologiesBundle\Entity\Technology;
+use TechnologiesBundle\Repository\TechnologyRepository;
 
 
 /**
@@ -116,5 +117,21 @@ class TechnologyController extends RestController
         }
 
         return $this->generateInfoResponse(JsonResponse::HTTP_NOT_FOUND);
+    }
+
+    /**
+     * @return array
+     */
+    protected function getLikeFiltrationFields()
+    {
+        return [TechnologyRepository::FIELD_TITLE];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getInFiltrationFields()
+    {
+        return [];
     }
 }

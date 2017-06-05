@@ -15,6 +15,13 @@ class TechnologyRepository extends AbstractRepository
      */
     public function getSortedByTitle(array $options)
     {
-        return $this->getByOptions(self::FIELD_TITLE, $options);
+        $builder = $this->createQueryBuilder('t');
+        $builder
+            ->where($builder->expr()->like('t.title', ':title'))
+            ->setParameter(':title', $options[self::FIELD_TITLE])
+        ;
+        $this->paginationWrapper($builder, $options);
+
+        return $builder->getQuery()->getResult();
     }
 }
