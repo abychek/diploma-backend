@@ -21,8 +21,48 @@ class ProjectController extends RestController
 {
     /**
      * @ApiDoc(
+     *  section="projects",
      *  resource=true,
-     *  description="This is a description of your API method"
+     *  description="Return list of projects.",
+     *  filters={
+     *      {"name"="size", "dataType"="integer", "description"="Size of returned data"},
+     *      {"name"="from", "dataType"="integer", "description"="Start position of returned data"},
+     *      {
+     *          "name"="sort",
+     *          "dataType"="string",
+     *          "pattern"="field:(title|started_at|finished_at); strategy:(ASC|DESC)",
+     *          "description"="Sorted field and strategy ({field}:{strategy})"
+     *      },
+     *      {
+     *          "name"="title",
+     *          "dataType"="string",
+     *          "description"="Filtrate projects by Title."
+     *      },
+     *      {
+     *          "name"="started_at",
+     *          "dataType"="date",
+     *          "pattern"="dd.mm.YYYY",
+     *          "description"="Filtrate projects by Start date."
+     *      },
+     *      {
+     *          "name"="finished_at",
+     *          "dataType"="date",
+     *          "pattern"="dd.mm.YYYY",
+     *          "description"="Filtrate projects by Start date."
+     *      },
+     *      {
+     *          "name"="members",
+     *          "dataType"="array",
+     *          "pattern"="{employee_id1},{employee_id2},{employee_id3}, ...",
+     *          "description"="Filtrate projects by Employees."
+     *      },
+     *      {
+     *          "name"="technologies",
+     *          "dataType"="array",
+     *          "pattern"="{technology_id1},{technology_id2},{technology_id3}, ...",
+     *          "description"="Filtrate projects by Technologies."
+     *      }
+     *  }
      * )
      * @Route("/")
      * @Method({"GET"})
@@ -42,6 +82,14 @@ class ProjectController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="projects",
+     *  resource=true,
+     *  description="Return concrete project.",
+     *  parameters={
+     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Project id"}
+     *  }
+     * )
      * @Route("/{id}/")
      * @Method({"GET"})
      * @param Request $request
@@ -58,6 +106,32 @@ class ProjectController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="projects",
+     *  resource=true,
+     *  description="Create new project.",
+     *  requirements={
+     *      {
+     *          "name"="title",
+     *          "dataType"="string",
+     *          "description"="Project name."
+     *      },
+     *      {
+     *          "name"="descriptions",
+     *          "dataType"="text",
+     *          "description"="Project description."
+     *      }
+     *  },
+     *  parameters={
+     *      {
+     *          "name"="startDate",
+     *          "dataType"="date",
+     *          "required"=false,
+     *          "pattern"="dd.mm.YYYY",
+     *          "description"="Project start date."
+     *      }
+     *  }
+     * )
      * @Route("/")
      * @Method({"POST"})
      * @param Request $request
@@ -84,6 +158,47 @@ class ProjectController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="projects",
+     *  resource=true,
+     *  description="Create new project.",
+     *  parameters={
+     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Project id"},
+     *      {
+     *          "name"="title",
+     *          "dataType"="string",
+     *          "required"=false,
+     *          "description"="Project name."
+     *      },
+     *      {
+     *          "name"="descriptions",
+     *          "dataType"="text",
+     *          "required"=false,
+     *          "description"="Project description."
+     *      },
+     *      {
+     *          "name"="startDate",
+     *          "dataType"="date",
+     *          "required"=false,
+     *          "pattern"="dd.mm.YYYY",
+     *          "description"="Project start date."
+     *      },
+     *      {
+     *          "name"="finishDate",
+     *          "dataType"="date",
+     *          "required"=false,
+     *          "pattern"="dd.mm.YYYY",
+     *          "description"="Project finish date."
+     *      },
+     *      {
+     *          "name"="status",
+     *          "dataType"="string",
+     *          "required"=false,
+     *          "pattern"="(available|unavailable)",
+     *          "description"="Project status."
+     *      }
+     *  }
+     * )
      * @Route("/{id}/")
      * @Method({"PUT"})
      * @param Request $request
@@ -118,6 +233,14 @@ class ProjectController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="projects",
+     *  resource=true,
+     *  description="Remove concrete project.",
+     *  parameters={
+     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Project id"}
+     *  }
+     * )
      * @Route("/{id}/")
      * @Method({"DELETE"})
      * @param Request $request
