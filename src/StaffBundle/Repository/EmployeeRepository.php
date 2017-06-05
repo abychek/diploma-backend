@@ -11,6 +11,7 @@ class EmployeeRepository extends AbstractRepository
     const FIELD_NAME = 'name';
     const FIELD_SKILLS = 'skills';
     const FIELD_PROJECTS = 'projects';
+    const FIELD_POSITIONS = 'positions';
 
     /**
      * @param array $options
@@ -33,6 +34,11 @@ class EmployeeRepository extends AbstractRepository
             $builder
                 ->join('e.technologies', 't')
                 ->andWhere($builder->expr()->in('t.id', $options[self::FIELD_SKILLS]));
+        }
+        if (array_key_exists(self::FIELD_POSITIONS, $options)) {
+            $builder
+                ->join('e.position', 'position')
+                ->andWhere($builder->expr()->in('position.id', $options[self::FIELD_POSITIONS]));
         }
         $this->paginationWrapper($builder, $options);
 
