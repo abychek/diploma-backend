@@ -7,6 +7,7 @@ use AppBundle\Controller\RestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use StaffBundle\Entity\Position;
+use StaffBundle\Repository\PositionRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -116,5 +117,21 @@ class PositionController extends RestController
         }
 
         return $this->generateInfoResponse(JsonResponse::HTTP_NOT_FOUND);
+    }
+
+    /**
+     * @return array
+     */
+    protected function getLikeFiltrationFields()
+    {
+        return [PositionRepository::FIELD_NAME];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getInFiltrationFields()
+    {
+        return [];
     }
 }

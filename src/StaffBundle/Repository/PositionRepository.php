@@ -16,6 +16,13 @@ class PositionRepository extends AbstractRepository
      */
     public function getSortedByName(array $options)
     {
-        return $this->getByOptions(self::FIELD_NAME, $options);
+        $builder = $this->createQueryBuilder('p');
+        $builder
+            ->where($builder->expr()->like('p.name', ':name'))
+            ->setParameter(':name', $options[self::FIELD_NAME])
+        ;
+        $this->paginationWrapper($builder, $options);
+
+        return $builder->getQuery()->getResult();
     }
 }
