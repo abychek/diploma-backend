@@ -5,6 +5,7 @@ namespace ProjectsBundle\Controller;
 
 use AppBundle\Controller\RestController;
 use ProjectsBundle\Entity\ProjectRole;
+use ProjectsBundle\Repository\ProjectRolesRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -28,7 +29,7 @@ class ProjectRolesController extends RestController
     {
         $result = [];
         $options = $this->handleOptions($request);
-        $roles = $this->getDoctrine()->getRepository('ProjectsBundle:ProjectRole')->getSortedByRoleName($options);
+        $roles = $this->getDoctrine()->getRepository('ProjectsBundle:ProjectRole')->getByRoleName($options);
         foreach ($roles as $role) {
             $result[] = $role->toArray();
         }
@@ -119,5 +120,21 @@ class ProjectRolesController extends RestController
         }
 
         return $this->generateInfoResponse(JsonResponse::HTTP_NOT_FOUND);
+    }
+
+    /**
+     * @return array
+     */
+    protected function getLikeFiltrationFields()
+    {
+        return [ProjectRolesRepository::FIELD_ROLE_NAME];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getInFiltrationFields()
+    {
+        return [];
     }
 }
