@@ -6,9 +6,11 @@ use AppBundle\Entity\AbstractResourceEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use ProjectsBundle\Entity\Member;
+use TechnologiesBundle\Entity\Technology;
 
 
 /**
@@ -36,11 +38,19 @@ class Employee extends AbstractResourceEntity
     private $memberships;
 
     /**
+     * @var ArrayCollection|Technology[]
+     * @ORM\ManyToMany(targetEntity="TechnologiesBundle\Entity\Technology", inversedBy="employees")
+     * @JoinTable(name="employee_technologies")
+     */
+    private $technologies;
+
+    /**
      * Employee constructor.
      */
     public function __construct()
     {
         $this->memberships = new ArrayCollection();
+        $this->technologies = new ArrayCollection();
     }
 
 
@@ -99,14 +109,38 @@ class Employee extends AbstractResourceEntity
     }
 
     /**
+     * @return ArrayCollection|Technology[]
+     */
+    public function getTechnologies()
+    {
+        return $this->technologies;
+    }
+
+    /**
+     * @param ArrayCollection|Technology[] $technologies
+     * @return Employee
+     */
+    public function setTechnologies($technologies)
+    {
+        $this->technologies = $technologies;
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function toArray()
     {
+        $technologies = [];
+        foreach ($this->getTechnologies() as $technology) {
+            $technologies[] = $technology->toArray();
+        }
+
         return [
             'id' => $this->getId(),
             'name' => $this->getName(),
             'position' => $this->getPosition()->getName(),
+            'skills' => $technologies,
             'status' => $this->getStatus()
         ];
     }

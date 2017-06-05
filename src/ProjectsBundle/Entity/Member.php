@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="ProjectsBundle\Repository\MemberRepository")
- * @ORM\Table(name="Members")
+ * @ORM\Table(name="members")
  */
 class Member extends AbstractResourceEntity
 {

@@ -3,10 +3,12 @@
 namespace StaffBundle\DataFixtures\ORM;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use StaffBundle\Entity\Employee;
 use StaffBundle\Entity\Position;
+use TechnologiesBundle\Entity\Technology;
 
 class EmployeesDataLoader implements FixtureInterface
 {
@@ -18,27 +20,31 @@ class EmployeesDataLoader implements FixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $manager->persist($phpDeveloper = $this->createPosition('php-developer', Position::STATUS_AVAILABLE));
-        $manager->persist($frontendDeveloper = $this->createPosition('frontend-developer', Position::STATUS_AVAILABLE));
+        $manager->persist($phpDeveloper = $this->createPosition('PHP Developer', Position::STATUS_AVAILABLE));
+        $manager->persist($frontendDeveloper = $this->createPosition('Frontend Developer', Position::STATUS_AVAILABLE));
 
-        $manager->persist($this->createEmployee('Oleksii Bychek', $phpDeveloper, Employee::STATUS_AVAILABLE));
-        $manager->persist($this->createEmployee('Grygory Reshetnyak', $frontendDeveloper, Employee::STATUS_AVAILABLE));
+        $manager->persist($php = $this->createTechnology('PHP'));
+        $manager->persist($js = $this->createTechnology('JavaScript'));
+
+        $manager->persist($this->createEmployee('Oleksii Bychek', $phpDeveloper, $php));
+        $manager->persist($this->createEmployee('Grygory Reshetnyak', $frontendDeveloper, $js));
         $manager->flush();
     }
 
     /**
      * @param $name
      * @param Position $position
-     * @param $status
+     * @param Technology $technology
      * @return Employee
      */
-    private function createEmployee($name, Position $position, $status)
+    private function createEmployee($name, Position $position, Technology $technology)
     {
         $employee = new Employee();
         $employee
             ->setName($name)
             ->setPosition($position)
-            ->setStatus($status);
+            ->setStatus(Employee::STATUS_AVAILABLE);
+        $employee->getTechnologies()->add($technology);
 
         return $employee;
     }
@@ -54,5 +60,13 @@ class EmployeesDataLoader implements FixtureInterface
         $position->setName($name)->setStatus($status);
 
         return $position;
+    }
+
+    private function createTechnology($title)
+    {
+        $technology = new Technology();
+        $technology->setTitle($title)->setStatus(Technology::STATUS_AVAILABLE);
+
+        return $technology;
     }
 }

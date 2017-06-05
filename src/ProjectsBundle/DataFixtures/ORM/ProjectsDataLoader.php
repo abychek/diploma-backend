@@ -60,6 +60,9 @@ class ProjectsDataLoader implements FixtureInterface
 
         $google->getMembers()->add($leadMember);
         $google->getMembers()->add($developerMember);
+
+        $technologies = $manager->getRepository('TechnologiesBundle:Technology')->findAll();
+        $google->setTechnologies($technologies);
         $manager->persist($google);
         $manager->flush();
 

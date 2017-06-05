@@ -10,7 +10,9 @@ namespace StaffBundle\Entity;
 
 
 use AppBundle\Entity\AbstractResourceEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * @ORM\Entity(repositoryClass="StaffBundle\Repository\PositionRepository")
@@ -22,6 +24,12 @@ class Position extends AbstractResourceEntity
      * @ORM\Column(type="string", length=100)
      */
     private $name;
+
+    /**
+     * @var ArrayCollection|Employee[]
+     * @OneToMany(targetEntity="StaffBundle\Entity\Employee", mappedBy="position")
+     */
+    private $employees;
 
     /**
      * @return mixed

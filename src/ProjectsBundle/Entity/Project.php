@@ -6,7 +6,9 @@ namespace ProjectsBundle\Entity;
 use AppBundle\Entity\AbstractResourceEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\OneToMany;
+use TechnologiesBundle\Entity\Technology;
 
 /**
  * @ORM\Entity(repositoryClass="ProjectsBundle\Repository\ProjectRepository")
@@ -33,6 +35,13 @@ class Project extends AbstractResourceEntity
     private $members;
 
     /**
+     * @var Technology[]
+     * @ORM\ManyToMany(targetEntity="TechnologiesBundle\Entity\Technology", inversedBy="projects")
+     * @JoinTable(name="project_technologies")
+     */
+    private $technologies;
+
+    /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
      */
@@ -50,6 +59,7 @@ class Project extends AbstractResourceEntity
     public function __construct()
     {
         $this->members = new ArrayCollection();
+        $this->technologies = new ArrayCollection();
     }
 
     /**
@@ -107,6 +117,24 @@ class Project extends AbstractResourceEntity
     }
 
     /**
+     * @return Technology[]
+     */
+    public function getTechnologies()
+    {
+        return $this->technologies;
+    }
+
+    /**
+     * @param Technology[] $technologies
+     * @return Project
+     */
+    public function setTechnologies($technologies)
+    {
+        $this->technologies = $technologies;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getStartDate()
@@ -152,11 +180,17 @@ class Project extends AbstractResourceEntity
             $members[] = $member->toArray();
         }
 
+        $technologies = [];
+        foreach ($this->getTechnologies() as $technology) {
+            $technologies[] = $technology->toArray();
+        }
+
         return [
             'id' => $this->getId(),
             'title' => $this->getTitle(),
             'description' => $this->getDescription(),
             'members' => $members,
+            'technologies' => $technologies,
             'started_at' => $this->getStartDate(),
             'finished_at' => $this->getFinishDate()
         ];
