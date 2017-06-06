@@ -3,6 +3,7 @@
 namespace TechnologiesBundle\Controller;
 
 use AppBundle\Controller\RestController;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -19,6 +20,26 @@ use TechnologiesBundle\Repository\TechnologyRepository;
 class TechnologyController extends RestController
 {
     /**
+     * @ApiDoc(
+     *  section="Technologies",
+     *  resource=true,
+     *  description="Return list of technologies.",
+     *  filters={
+     *      {"name"="size", "dataType"="integer", "description"="Size of returned data"},
+     *      {"name"="from", "dataType"="integer", "description"="Start position of returned data"},
+     *      {
+     *          "name"="sort",
+     *          "dataType"="string",
+     *          "pattern"="field:(name); strategy:(ASC|DESC)",
+     *          "description"="Sorted field and strategy ({field}:{strategy})"
+     *      },
+     *      {
+     *          "name"="title",
+     *          "dataType"="string",
+     *          "description"="Filtrate technologies by Title."
+     *      }
+     *  }
+     * )
      * @Route("/")
      * @Method({"GET"})
      * @param Request $request
@@ -37,6 +58,14 @@ class TechnologyController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="Technologies",
+     *  resource=true,
+     *  description="Return concrete technology.",
+     *  parameters={
+     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Technology id"}
+     *  }
+     * )
      * @Route("/{id}/")
      * @Method({"GET"})
      * @param Request $request
@@ -53,6 +82,18 @@ class TechnologyController extends RestController
     }
 
     /**
+     * @ApiDoc(
+     *  section="Technologies",
+     *  resource=true,
+     *  description="Create new Technology.",
+     *  requirements={
+     *      {
+     *          "name"="title",
+     *          "dataType"="string",
+     *          "description"="Technology title."
+     *      }
+     *  }
+     * )
      * @Route("/")
      * @Method({"POST"})
      * @param Request $request
@@ -74,7 +115,28 @@ class TechnologyController extends RestController
     }
 
     /**
-     * @Route("/{$id}")
+     * @ApiDoc(
+     *  section="Technologies",
+     *  resource=true,
+     *  description="Update technology.",
+     *  parameters={
+     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Technology id"},
+     *      {
+     *          "name"="title",
+     *          "dataType"="string",
+     *          "required"=false,
+     *          "description"="Technology title."
+     *      },
+     *      {
+     *          "name"="status",
+     *          "dataType"="string",
+     *          "required"=false,
+     *          "pattern"="(available|unavailable)",
+     *          "description"="Technology status."
+     *      }
+     *  }
+     * )
+     * @Route("/{id}/")
      * @Method({"PUT"})
      * @param Request $request
      * @param $id
@@ -100,7 +162,15 @@ class TechnologyController extends RestController
     }
 
     /**
-     * @Route("/{$id}")
+     * @ApiDoc(
+     *  section="Technologies",
+     *  resource=true,
+     *  description="Remove concrete technology.",
+     *  parameters={
+     *      {"name"="id", "dataType"="integer", "required"=true, "description"="Technology id"}
+     *  }
+     * )
+     * @Route("/{id}/")
      * @Method({"DELETE"})
      * @param Request $request
      * @param $id

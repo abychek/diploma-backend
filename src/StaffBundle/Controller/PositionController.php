@@ -36,7 +36,7 @@ class PositionController extends RestController
      *      {
      *          "name"="name",
      *          "dataType"="string",
-     *          "description"="Filtrate employees by Name."
+     *          "description"="Filtrate positions by Name."
      *      }
      *  }
      * )
