@@ -4,11 +4,10 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Repository\ResourceRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-abstract class RestController extends Controller
+abstract class RestController extends AbstractController
 {
     /**
      * @param Request $request
@@ -17,42 +16,10 @@ abstract class RestController extends Controller
     protected function handleOptions(Request $request)
     {
         return array_merge(
-            [
-                ResourceRepository::OPTION_FROM => $this->getFrom($request),
-                ResourceRepository::OPTION_SIZE => $this->getSize($request)
-            ],
+            parent::handleOptions($request),
             $this->getFiltration($request),
             $this->getSort($request)
         );
-    }
-
-    /**
-     * @param Request $request
-     * @return string
-     */
-    private function getFrom(Request $request)
-    {
-        return $this->getOption($request, ResourceRepository::OPTION_FROM, 0);
-    }
-
-    /**
-     * @param Request $request
-     * @return string
-     */
-    private function getSize(Request $request)
-    {
-        return $this->getOption($request, ResourceRepository::OPTION_SIZE, 10);
-    }
-
-    /**
-     * @param Request $request
-     * @param $param
-     * @param $default
-     * @return string
-     */
-    private function getOption(Request $request, $param, $default)
-    {
-        return $request->get($param, $default);
     }
 
     /**

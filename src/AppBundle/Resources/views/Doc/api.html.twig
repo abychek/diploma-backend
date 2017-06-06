@@ -670,6 +670,7 @@ form .request-content {
             <ul id="resources">
                     <div id="summary">
         <ul>
+                            <li><a href="#section-Analytics">Analytics</a></li>
                             <li><a href="#section-Employees">Employees</a></li>
                             <li><a href="#section-Positions">Positions</a></li>
                             <li><a href="#section-Project roles">Project roles</a></li>
@@ -678,6 +679,227 @@ form .request-content {
                     </ul>
     </div>
                         <li class="section active">
+                <div class="actions">
+                    <a class="action-show-hide">Show/hide</a>
+                    <a class="action-list">List Operations</a>
+                    <a class="action-expand">Expand Operations</a>
+                </div>
+                <h1>Analytics</h1>
+                <ul class="section-list" >
+                            <a id="section-Analytics"></a>
+            <li class="resource">
+                <div class="heading">
+                                            <h2>/analytics/employees/most-free</h2>
+                                    </div>
+                <ul class="endpoints">
+                    <li class="endpoint">
+                        <ul class="operations">
+                                                            <li class="get operation" id="get--analytics-employees-most-free">
+    <div class="heading toggler" data-href="#get--analytics-employees-most-free">
+        <h3>
+            <span class="http_method">
+                <i>GET</i>
+            </span>
+
+            
+                        
+            <span class="path">
+                /analytics/employees/most-free
+            </span>
+                   </h3>
+        <ul class="options">
+                            <li>Returns list of employees with needed technologies and sorted by open projects count from low to big.</li>
+                    </ul>
+    </div>
+
+    <div class="content" style="display: none;">
+        <ul class="tabs">
+                            <li class="selected" data-pane="content">Documentation</li>
+                <li data-pane="sandbox">Sandbox</li>
+                    </ul>
+
+        <div class="panes">
+            <div class="pane content selected">
+            
+            
+            
+                            <h4>Filters</h4>
+                <table class="fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Information</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <td>size</td>
+                            <td>
+                                <table>
+                                                                    <tr>
+                                        <td>Datatype</td>
+                                        <td>integer</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>Description</td>
+                                        <td>Size of returned data</td>
+                                    </tr>
+                                                                </table>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td>from</td>
+                            <td>
+                                <table>
+                                                                    <tr>
+                                        <td>Datatype</td>
+                                        <td>integer</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>Description</td>
+                                        <td>Start position of returned data</td>
+                                    </tr>
+                                                                </table>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td>technologies</td>
+                            <td>
+                                <table>
+                                                                    <tr>
+                                        <td>Datatype</td>
+                                        <td>array</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>Pattern</td>
+                                        <td>{technology_id1},{technology_id2},{technology_id3}, ...</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>Description</td>
+                                        <td>Filtrate employees by Technologies.</td>
+                                    </tr>
+                                                                </table>
+                            </td>
+                        </tr>
+                                        </tbody>
+                </table>
+            
+            
+
+            
+            
+            
+            
+            </div>
+
+                            <div class="pane sandbox">
+                                            <form method="" action="/analytics/employees/most-free">
+                            <fieldset class="parameters">
+                                <legend>Input</legend>
+                                                                                                    <h4>Filters</h4>
+                                                                            <p class="tuple filter">
+                                            <input type="text" class="key" value="size" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="Size of returned data" /> <span class="remove">-</span>
+                                        </p>
+                                                                            <p class="tuple filter">
+                                            <input type="text" class="key" value="from" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="Start position of returned data" /> <span class="remove">-</span>
+                                        </p>
+                                                                            <p class="tuple filter">
+                                            <input type="text" class="key" value="technologies" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="Filtrate employees by Technologies." /> <span class="remove">-</span>
+                                        </p>
+                                                                                                    
+                            </fieldset>
+
+                            <fieldset class="headers">
+                                                                                                    <input type="hidden" name="header_method" value="GET" />
+                                
+                                <legend>Headers</legend>
+
+                                
+                                
+                                <p class="tuple">
+                                    <input type="text" class="key" placeholder="Key" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                                </p>
+
+                                <button type="button" class="add_header">New header</button>
+                            </fieldset>
+
+                            <fieldset class="request-content">
+                                <legend>Content</legend>
+
+                                <textarea class="content" placeholder="Content set here will override the parameters that do not match the url"></textarea>
+
+                                <p class="tuple">
+                                    <input type="text" class="key content-type" value="Content-Type" disabled="disabled" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" />
+                                    <button  type="button" class="set-content-type">Set header</button> <small>Replaces header if set</small>
+                                </p>
+                            </fieldset>
+
+                            <div class="buttons">
+                                <input type="submit" value="Try!" />
+                            </div>
+                        </form>
+
+                        <script type="text/x-tmpl" class="parameters_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                                <option value="textarea">Textarea</option>
+                                            </select>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+                        <script type="text/x-tmpl" class="headers_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+
+                        <div class="result">
+                            <h4>Request URL</h4>
+                            <pre class="url"></pre>
+
+                            <h4 class="request-body-header">Request body</h4>
+                            <pre class="request-body"></pre>
+
+                            <h4>Response Headers&nbsp;<small>[<a href="" class="to-expand">Expand</a>]</small>&nbsp;<small class="profiler">[<a href="" class="profiler-link" target="_blank">Profiler</a>]</small></h4>
+                            <pre class="headers to-expand"></pre>
+
+                            <h4>Response Body&nbsp;<small>[<a href="" class="to-raw">Raw</a>]</small></h4>
+                            <pre class="response prettyprint"></pre>
+
+                            <h4>Curl Command Line</h4>
+                            <pre class="curl-command"></pre>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</li>
+                                                    </ul>
+                    </li>
+                </ul>
+            </li>
+                                </ul>
+            </li>
+                                <li class="section active">
                 <div class="actions">
                     <a class="action-show-hide">Show/hide</a>
                     <a class="action-list">List Operations</a>
@@ -7082,7 +7304,7 @@ form .request-content {
                         </ul>
         </div>
         <p id="colophon">
-            Documentation auto-generated on Mon, 05 Jun 17 20:38:27 +0300
+            Documentation auto-generated on Tue, 06 Jun 17 10:21:54 +0300
         </p>
         <script type="text/javascript">
 

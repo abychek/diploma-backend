@@ -1,7 +1,7 @@
-# app/config/routing.yml
-NelmioApiDocBundle:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /api/doc
+analytics:
+    resource: "@AnalyticsBundle/Controller/"
+    type:     annotation
+    prefix:   /analytics
 
 technologies:
     resource: "@TechnologiesBundle/Controller/"
@@ -22,3 +22,7 @@ app:
     resource: '@AppBundle/Controller/'
     type: annotation
     prefix:   /doc
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc

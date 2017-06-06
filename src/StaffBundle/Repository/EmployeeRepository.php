@@ -45,4 +45,26 @@ class EmployeeRepository extends AbstractRepository
 
         return $builder->getQuery()->getResult();
     }
+
+    public function mostFreeByTechnologies($technologies, $options)
+    {
+        $builder = $this->createQueryBuilder('e');
+        $builder
+            ->join('e.technologies', 't')
+            ->leftJoin('e.memberships', 'm')
+            ->leftJoin('m.project', 'p')
+            ->addSelect('count(p.id) as projectCount')
+            ->groupBy('e.id')
+            ->orderBy('projectCount', 'ASC')
+            ->where($builder->expr()->in('t.id', $technologies))
+            ->andWhere($builder->expr()->orX(
+                $builder->expr()->lt('p.finishDate', ':finish_at'),
+                $builder->expr()->isNull('p.finishDate')
+            ))
+            ->setParameter(':finish_at', new \DateTime('now'))
+        ;
+        $this->paginationWrapper($builder, $options);
+
+        return $builder->getQuery()->getResult();
+    }
 }
