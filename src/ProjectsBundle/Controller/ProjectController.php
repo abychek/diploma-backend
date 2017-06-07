@@ -286,7 +286,10 @@ class ProjectController extends RestController
      */
     protected function getInFiltrationFields()
     {
-        return [ProjectRepository::FIELD_MEMBERS, ProjectRepository::FIELD_TECHNOLOGIES];
+        return [
+            ProjectRepository::FIELD_MEMBERS,
+            ProjectRepository::FIELD_TECHNOLOGIES
+        ];
     }
 
     /**
